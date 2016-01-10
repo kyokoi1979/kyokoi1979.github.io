@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    NDOUtilsのインストール | しゃちくWeb
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kyokoi1979.github.io/2012/01/17/ndoutils%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://kyokoi1979.github.ioindex.xml" rel="alternate" type="application/rss+xml" title="しゃちくWeb" />
+  <link href="http://kyokoi1979.github.ioindex.xml" rel="feed" type="application/rss+xml" title="しゃちくWeb" />
+
+  
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "2b9fffc6-b3fe-4988-a0ef-4f9dcce98eaa", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://kyokoi1979.github.io">しゃちくWeb</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="kyokoi1979" target="_blank">Twitter</a></li>
+          <li><a href="qiantaih" target="_blank">Facebook</a></li>
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>NDOUtilsのインストール</h1>
+      <div class="meta">
+        Jan 17, 2012 &nbsp;
+        
+          #<a href="/tags/ndoutils">NDOUtils</a>&nbsp;
+        
+          #<a href="/tags/nagios">Nagios</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<p>NDOUtilsではNagiosのデータをデータベースに格納して管理することができます。
+<!-- more --></p>
+
+<p>詳細は公式サイトを参照してください。</p>
+
+<p><a href="http://exchange.nagios.org/directory/Addons/Database-Backends/NDOUtils/details">http://exchange.nagios.org/directory/Addons/Database-Backends/NDOUtils/details</a></p>
+
+<p>下記はサイトからの引用です。</p>
+
+<blockquote>
+<blockquote>
+<p>NDOUtils allows you to export current and historical data from one or more Nagios instances to a MySQL database. Several community addons use this as one of their data sources. NDOUtils consists of a standalone daemon, a Nagios event broker, and several helper utilities.
+&lt;&lt;</p>
+</blockquote>
+</blockquote>
+
+<h1 id="コンパイル-インストール">コンパイル、インストール</h1>
+
+<pre><code>$ curl http://jaist.dl.sourceforge.net/project/nagios/ndoutils-1.x/ndoutils-1.4b9/ndoutils-1.4b9.tar.gz | tar zxv
+$ cd ndoutils-1.4b9
+$ ./configure
+
+*** Configuration summary for ndoutils 1.4b9 10-27-2009 ***:
+
+ General Options:
+ -------------------------
+ NDO2DB user:    nagios
+ NDO2DB group:   nagios
+
+
+Review the options above for accuracy.  If they look okay,
+type 'make' to compile the NDO utilities.
+
+$ make
+$ sudo make install
+
+  Hint: NDOUtils Installation against Nagios v3.x
+  completed.
+
+  If you want to install NDOUtils for Nagios v2.x
+  please type  'make install-2x
+
+
+  Next step should be the database initialization/upgrade
+  cd into the db/ directory and either:
+     ./installdb  (for a new installation) or:
+     ./upgradedb  (for an existing one)
+
+make[1]: ディレクトリ `/usr/local/src/ndoutils-1.4b9/src' から出ます
+
+Main NDOUtils components installed
+
+</code></pre>
+
+<h1 id="データベース作成">データベース作成</h1>
+
+<p>次にNDOUtilsで利用するデータベース、ユーザ、パスワードを設定します。(いずれもndoutilsとしました)
+READMEには下記の記述があるため権限は制限しました。</p>
+
+<blockquote>
+<blockquote>
+<ol>
+<li>Create a username/password that has at least the following privileges for the database:</li>
+</ol>
+</blockquote>
+</blockquote>
+
+<pre><code>    SELECT, INSERT, UPDATE, DELETE
+</code></pre>
+
+<p>&lt;&lt;</p>
+
+<pre><code>mysql&gt; CREATE DATABASE ndoutils;
+Query OK, 1 row affected (0.00 sec)
+
+mysql&gt; GRANT SELECT,INSERT,UPDATE,DELETE
+    -&gt; ON ndoutils.*
+    -&gt; TO ndoutils@localhost
+    -&gt; IDENTIFIED BY 'ndoutils';
+Query OK, 0 rows affected (0.01 sec)
+</code></pre>
+
+<p>次にテーブルを作成します。
+failedと出ていますが気にしないでおきます :-)</p>
+
+<pre><code>$ cd db
+$ ./installdb -u root -p &quot;&quot; -h localhost -d ndoutils
+DBD::mysql::db do failed: Table 'ndoutils.nagios_dbversion' doesn't exist at ./installdb line 51.
+** Creating tables for version 1.4b9
+     Using mysql.sql for installation...
+** Updating table nagios_dbversi
+</code></pre>
+
+<h1 id="モジュール-コンフィグファイルのコピー">モジュール、コンフィグファイルのコピー</h1>
+
+<p>broker moduleのコピー。</p>
+
+<pre><code>$ sudo cp src/ndomod-3x.o /usr/local/nagios/bin/ndomod.o
+$ sudo cp config/ndomod.cfg-sample /usr/local/nagios/etc/ndomod.cfg
+$ sudo chown nagios:nagios /usr/local/nagios/etc/ndomod.cfg
+</code></pre>
+
+<p>nagiosがbroker moduleを読み込むように設定。</p>
+
+<pre><code>$ sudi vi /usr/local/nagios/etc/ndomod.cfg
+broker_module=/usr/local/nagios/bin/ndomod.o config_file=/usr/local/nagios/etc/ndomod.cfg
+</code></pre>
+
+<p>ndo2dbのコピー。</p>
+
+<pre><code>$ sudo cp src/ndo2db-3x /usr/local/nagios/bin/ndo2db
+$ sudo cp config/ndo2db.cfg-sample /usr/local/nagios/etc/ndo2db.cfg
+$ sudo chown nagios:nagios /usr/local/nagios/etc/ndo2db.cfg
+</code></pre>
+
+<p>ndo2dbの設定を先ほど作成したデータベース情報に変更。</p>
+
+<pre><code>$ sudo vi /usr/local/nagios/etc/ndo2db.cfg
+db_name=ndoutils
+db_user=ndoutils
+db_pass=ndoutils
+</code></pre>
+
+<p>ndo2dbデーモンの起動設定。</p>
+
+<pre><code>$ sudo cp daemon-init /etc/init.d/ndoutils
+$ sudo chmod 755 /etc/init.d/ndoutils
+$ sudo chkconfig ndoutils on
+</code></pre>
+
+<p>最後にndo2db,nagiosを起動して終わりです。</p>
+
+<pre><code>$ sudo service ndoutils start
+$ sudo service nagios restart
+</code></pre>
+
+<h1 id="動作確認">動作確認</h1>
+
+<p>正常に動作していればnagiosのログ(/usr/local/nagios/var/nagios.log)に
+こんな感じで表示されているはずです。</p>
+
+<pre><code>[1326691682] Nagios 3.3.1 starting... (PID=14465)
+[1326691682] Local time is Mon Jan 16 14:28:02 JST 2012
+[1326691682] LOG VERSION: 2.0
+[1326691682] ndomod: NDOMOD 1.4b9 (10-27-2009) Copyright (c) 2009 Nagios Core Development Team and Community Contributors
+[1326691682] ndomod: Successfully connected to data sink.  0 queued items to flush.
+[1326691682] Event broker module '/usr/local/nagios/bin/ndomod.o' initialized successfully.
+[1326691682] Finished daemonizing... (New PID=14469)
+</code></pre>
+
+<p>また、MySQLにもデータが格納されます。</p>
+
+<pre><code>mysql&gt; SELECT * FROM ndoutils.nagios_hosts\G
+*************************** 1. row ***************************
+                          host_id: 2
+                      instance_id: 1
+                      config_type: 1
+                   host_object_id: 1
+                            alias: oreore.dtdns.net
+                     display_name: oreore.dtdns.net
+                          address: 127.0.0.1
+          check_command_object_id: 13
+               check_command_args:
+   eventhandler_command_object_id: 0
+        eventhandler_command_args:
+notification_timeperiod_object_id: 43
+       check_timeperiod_object_id: 2
+       failure_prediction_options:
+                   check_interval: 1
+                   retry_interval: 1
+               max_check_attempts: 10
+         first_notification_delay: 0
+            notification_interval: 120
+                   notify_on_down: 1
+            notify_on_unreachable: 1
+               notify_on_recovery: 1
+               notify_on_flapping: 0
+               notify_on_downtime: 0
+                      stalk_on_up: 0
+                    stalk_on_down: 0
+             stalk_on_unreachable: 0
+           flap_detection_enabled: 1
+             flap_detection_on_up: 1
+           flap_detection_on_down: 1
+    flap_detection_on_unreachable: 1
+               low_flap_threshold: 0
+              high_flap_threshold: 0
+         process_performance_data: 1
+         freshness_checks_enabled: 0
+              freshness_threshold: 0
+           passive_checks_enabled: 1
+            event_handler_enabled: 1
+            active_checks_enabled: 1
+        retain_status_information: 1
+     retain_nonstatus_information: 1
+            notifications_enabled: 1
+                 obsess_over_host: 1
+       failure_prediction_enabled: 1
+                            notes:
+                        notes_url:
+                       action_url:
+                       icon_image:
+                   icon_image_alt:
+                       vrml_image:
+                  statusmap_image:
+                   have_2d_coords: 0
+                             x_2d: -1
+                             y_2d: 0
+                   have_3d_coords: 0
+                             x_3d: 0
+                             y_3d: 0
+                             z_3d: 0
+1 row in set (0.00 sec)
+</code></pre>
+
+      
+      
+      <div id="share-this" class="col span_10">
+        <span class='st_twitter_large' displayText='Tweet'></span>
+        <span class='st_facebook_large' displayText='Facebook'></span>
+        <span class='st_googleplus_large' displayText='Google +'></span>
+        <span class='st_pocket_large' displayText='Pocket'></span>
+        <span class='st_sharethis_large' displayText='ShareThis'></span>
+        <span class='st_email_large' displayText='Email'></span>  
+      </div>
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'unyu1979';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="http://kyokoi1979.github.io/2012/01/13/nginx--nagios-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E5%BE%8C%E7%B7%A8/" rel="prev">nginx &#43; Nagios のインストール(後編)</a></span>
+    
+    
+      <span class="next"><a href="http://kyokoi1979.github.io/2012/01/20/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AEapi%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%8B/" rel="next">さくらのクラウドのAPIで遊んでみる</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    SoftAXで遊んでみる | しゃちくWeb
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kyokoi1979.github.io/2012/12/30/softax%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%8B/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://kyokoi1979.github.ioindex.xml" rel="alternate" type="application/rss+xml" title="しゃちくWeb" />
+  <link href="http://kyokoi1979.github.ioindex.xml" rel="feed" type="application/rss+xml" title="しゃちくWeb" />
+
+  
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "2b9fffc6-b3fe-4988-a0ef-4f9dcce98eaa", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://kyokoi1979.github.io">しゃちくWeb</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="kyokoi1979" target="_blank">Twitter</a></li>
+          <li><a href="qiantaih" target="_blank">Facebook</a></li>
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>SoftAXで遊んでみる</h1>
+      <div class="meta">
+        Dec 30, 2012 &nbsp;
+        
+          #<a href="/tags/network">Network</a>&nbsp;
+        
+          #<a href="/tags/ax">AX</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>仕事でA10 NetworksのAXシリーズを使う機会があったので仮想アプライアンス版のSoftAXで遊んでみます。
+トライアル版では30日の使用制限と5Mbpsの帯域制限がありますが、軽く遊ぶ程度なら十分だと思われます。</p>
+
+<!-- more -->
+
+<p><a href="http://www.a10networks.com/products/axseries-softax.php">http://www.a10networks.com/products/axseries-softax.php</a></p>
+
+<p>下記のページで必要な事項を入れてすこし待つとダウンロード用とライセンス発行用のアドレスが記載されたメールが届くのでアクセスしてください。</p>
+
+<p><a href="http://www.a10networks.com/softax_trial_license/">http://www.a10networks.com/softax_trial_license/</a></p>
+
+<p>仮想アプライアンスはVMware ESX/ESXi 4.0以降用となっているのでうまいことインストールします。
+イメージを変換すればVMware Workstationなんかでも動くみたいです。</p>
+
+<ul>
+<li>初期設定</li>
+</ul>
+
+<p>インストール直後は下記の通り設定されていますが、環境に合わせて変更する必要があります。</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">IPアドレス</th>
+<th align="right">172.31.31.31 /24</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">ユーザ名</td>
+<td align="right">admin</td>
+</tr>
+
+<tr>
+<td align="left">パスワード</td>
+<td align="right">a10</td>
+</tr>
+
+<tr>
+<td align="left">enableパスワード</td>
+<td align="right">(ブランク)</td>
+</tr>
+</tbody>
+</table>
+
+<p>初期設定に必要なコマンド類はSoftAX Installation Guide(ライセンスのメールに記載されています)を読めばわかるようになっているので、うまいことやってください。</p>
+
+<p>コマンド体系はほとんどCiscoのIOSと同じで、CiscoのL3スイッチやルータを触ったことがある人は取っ付きやすいと思います。</p>
+
+<pre><code>AX system is ready now.
+
+[type ? for help]
+
+SoftAX&gt;enable
+Password:
+SoftAX#configure terminal
+SoftAX(config)#interface management
+SoftAX(config-if:management)#ip address 192.168.100.50 /24
+SoftAX(config-if:management)#ip default-gateway 192.168.100.1
+SoftAX(config-if:management)#end
+SoftAX#write memory
+Building configuration...
+Write configuration to default startup-config
+SoftAX#
+SoftAX#show running-config interfaces management
+interface management
+ ip address 192.168.100.50 255.255.255.0
+ ip default-gateway 192.168.100.1
+!
+</code></pre>
+
+<p>あとはライセンスのインポートをして終了です。
+続きは気が向いたら書きます(&lsquo;A`)</p>
+
+      
+      
+      <div id="share-this" class="col span_10">
+        <span class='st_twitter_large' displayText='Tweet'></span>
+        <span class='st_facebook_large' displayText='Facebook'></span>
+        <span class='st_googleplus_large' displayText='Google +'></span>
+        <span class='st_pocket_large' displayText='Pocket'></span>
+        <span class='st_sharethis_large' displayText='ShareThis'></span>
+        <span class='st_email_large' displayText='Email'></span>  
+      </div>
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'unyu1979';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="http://kyokoi1979.github.io/2012/01/26/vyattanetscreen%E3%81%A7%E3%81%AE%E6%8B%A0%E7%82%B9%E9%96%93vpn%E8%A8%AD%E5%AE%9A%E5%BE%8C%E7%B7%A8/" rel="prev">Vyatta,NetScreenでの拠点間VPN設定(後編)</a></span>
+    
+    
+      <span class="next"><a href="http://kyokoi1979.github.io/2013/04/29/ax%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B91/" rel="next">AXシリーズの使い方(1)</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

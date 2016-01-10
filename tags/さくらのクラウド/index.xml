@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>さくらのクラウド on しゃちくWeb</title>
+    <link>http://kyokoi1979.github.io/tags/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89/</link>
+    <description>Recent content in さくらのクラウド on しゃちくWeb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <managingEditor>unyu1979@gmail.com (kyokoi)</managingEditor>
+    <webMaster>unyu1979@gmail.com (kyokoi)</webMaster>
+    <copyright>(C) 2016 kyokoi1979</copyright>
+    <lastBuildDate>Fri, 20 Jan 2012 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://kyokoi1979.github.io/tags/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>さくらのクラウドのAPIで遊んでみる</title>
+      <link>http://kyokoi1979.github.io/2012/01/20/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AEapi%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%8B/</link>
+      <pubDate>Fri, 20 Jan 2012 00:00:00 +0000</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/2012/01/20/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AEapi%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%8B/</guid>
+      <description>&lt;p&gt;さくらのクラウドのAPIが公開されているので遊んでみる。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;サンプルのコードはPerlだけど、勉強のためRubyに。&lt;/p&gt;
+
+&lt;p&gt;アクセストークンなどはコントロールパネルの「設定」=&amp;gt;「APIキー管理」で取得したものを使う。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env ruby
+
+require &#39;net/https&#39;
+require &#39;uri&#39;
+require &#39;json&#39;
+
+access_token = &amp;quot;XXXXXXXXXX&amp;quot;
+access_token_secret = &amp;quot;XXXXXXXXXXXXXXXXXXXXX&amp;quot;
+uri = URI.parse(&amp;quot;https://secure.sakura.ad.jp/cloud/api/cloud/0.2/server/&amp;quot;)
+
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+body = http.start { |http|
+  req = Net::HTTP::Get.new(uri.path)
+  req.basic_auth(access_token, access_token_secret)
+  http.request(req).body
+}
+
+puts JSON.pretty_generate(JSON.parse(body))
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;実行するとこんなかんじ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;From&amp;quot;: 0,
+  &amp;quot;Count&amp;quot;: 2,
+  &amp;quot;Total&amp;quot;: 2,
+  &amp;quot;Servers&amp;quot;: [
+    {
+      &amp;quot;Index&amp;quot;: 0,
+      &amp;quot;ID&amp;quot;: &amp;quot;XXXXXXXX&amp;quot;,
+      &amp;quot;Name&amp;quot;: &amp;quot;Fedora&amp;quot;,
+      &amp;quot;HostName&amp;quot;: &amp;quot;localhost&amp;quot;,
+      &amp;quot;Description&amp;quot;: &amp;quot;Fedora15&amp;quot;,
+      &amp;quot;CreatedAt&amp;quot;: &amp;quot;2011-11-25T10:28:31+09:00&amp;quot;,
+      &amp;quot;Icon&amp;quot;: {
+        &amp;quot;ID&amp;quot;: &amp;quot;XXXXXXXXXXX&amp;quot;,
+        &amp;quot;URL&amp;quot;: &amp;quot;https://secure.sakura.ad.jp/cloud/api/cloud/0.2/icon/112300511983.png&amp;quot;,
+        &amp;quot;Name&amp;quot;: &amp;quot;Fedora&amp;quot;,
+        &amp;quot;Scope&amp;quot;: &amp;quot;shared&amp;quot;
+      },
+      &amp;quot;ServerPlan&amp;quot;: {
+        &amp;quot;ID&amp;quot;: 1,
+        &amp;quot;Name&amp;quot;: &amp;quot;プラン1&amp;quot;,
+        &amp;quot;CPU&amp;quot;: 1,
+        &amp;quot;MemoryMB&amp;quot;: 2048,
+        &amp;quot;ServiceClass&amp;quot;: &amp;quot;cloud/plan/1&amp;quot;
+      },......
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あとでちゃんとしたものを作っておこう。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

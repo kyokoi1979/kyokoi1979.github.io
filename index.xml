@@ -1,0 +1,2579 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>しゃちくWeb</title>
+    <link>http://kyokoi1979.github.io/</link>
+    <description>Recent content on しゃちくWeb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <managingEditor>unyu1979@gmail.com (kyokoi)</managingEditor>
+    <webMaster>unyu1979@gmail.com (kyokoi)</webMaster>
+    <copyright>(C) 2016 kyokoi1979</copyright>
+    <lastBuildDate>Sun, 10 Jan 2016 19:50:09 +0900</lastBuildDate>
+    <atom:link href="http://kyokoi1979.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>about</title>
+      <link>http://kyokoi1979.github.io/about/</link>
+      <pubDate>Sun, 10 Jan 2016 19:50:09 +0900</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/about/</guid>
+      <description>&lt;p&gt;明日から本気を出すしゃちくのブログ。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Windows10 Technical Preview</title>
+      <link>http://kyokoi1979.github.io/2015/01/25/windows10-technical-preview/</link>
+      <pubDate>Sun, 25 Jan 2015 00:00:00 +0000</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/2015/01/25/windows10-technical-preview/</guid>
+      <description>&lt;p&gt;新しいバージョンが出たのでお試し。&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/2015-01-24_16.04.45.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/2015-01-24_19.54.50.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;個人的にはメトロアプリが操作しやすくなったのがお気に入り。
+Microsoft MahjongとかMicrosoft Solitaire Collectionを動かしながら作業ができて捗ります。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AXシリーズの使い方(1)</title>
+      <link>http://kyokoi1979.github.io/2013/04/29/ax%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B91/</link>
+      <pubDate>Mon, 29 Apr 2013 00:00:00 +0000</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/2013/04/29/ax%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B91/</guid>
+      <description>
+
+&lt;p&gt;A10 NetworksのAXシリーズで使う基本的なコマンドについて書いてみます。
+前回同様にSoftAXを使います。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;一部メッセージが日本語になっていますが、localeをja_JP.UTF-8 か ja_JP.EUC-JP にすると日本語で出力してくれるようです。
+とはいえ、ほとんどが英語でたまーに日本語も出てくるくらいです。&lt;/p&gt;
+
+&lt;h1 id=&#34;バージョンの確認:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;バージョンの確認&lt;/h1&gt;
+
+&lt;p&gt;色々表示されます。
+今回使うのは 2.7.0-P2, build 53です。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show version
+AX Series Advanced Traffic Manager AXSoftAX
+  Copyright 2007-2012 by A10 Networks, Inc.  All A10 Networks products are
+  protected by one or more of the following US patents and patents pending:
+  7716378, 7675854, 7647635, 7552126, 20090049537, 20080229418, 20080040789,
+  20070283429, 20070271598, 20070180101
+
+      64-bit Advanced Core OS (ACOS) version 2.7.0-P2, build 53 (Feb-21-2013,23:27)
+        Booted from Hard Disk primary image
+      Licenses:  Bandwidth
+      Serial Number: N/A
+      aFleX version: 2.0.0
+      aXAPI version: 2.0, 1.2, 1.1, 1.0
+      Hard Disk primary image (default) version 2.7.0-P2, build 53
+      Hard Disk secondary image version 2.7.0-P2, build 53
+      Last configuration saved at Apr-28-2013, 05:16
+      Virtualization type: Hyper-V
+      Hardware: 1 CPUs(Stepping 11), Single 7G Hard disk
+      Memory 1535 Mbyte, Free Memory 212 Mbyte
+      Hardware Manufacturing Code: 11
+      Current time is Apr-29-2013, 08:17
+      The system has been up 1 day, 12 hours, 44 minutes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;cpu使用率を調べる:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;CPU使用率を調べる&lt;/h1&gt;
+
+&lt;p&gt;単純に現在のCPU使用率を確認したいだけならshow cpuで確認できます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show cpu
+Time: 08:19:36 JST 月  4月 29 2013
+            1Sec    5Sec    10Sec   30Sec   60Sec
+--------------------------------------------------------
+Control1      4%      6%      6%      9%      9%
+Data1         4%      3%      3%      3%      4%
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;一定秒数ごとに表示:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;一定秒数ごとに表示&lt;/h2&gt;
+
+&lt;p&gt;show cpu intervalを使うと一定秒数ごとに表示してくれます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show cpu interval 1
+Cpu Usage: (press ^C to quit)
+            1Sec    5Sec    10Sec   30Sec   60Sec
+--------------------------------------------------------
+Time: 08:20:26 JST 月  4月 29 2013
+Control1      4%      7%     14%     12%     10%
+Data1         1%      4%      4%      4%      4%
+Time: 08:20:27 JST 月  4月 29 2013
+Control1     16%     10%     15%     12%     10%
+Data1         3%      4%      4%      4%      4%
+Time: 08:20:28 JST 月  4月 29 2013
+Control1     18%     10%      9%     12%     10%
+Data1         4%      4%      3%      4%      4%
+Time: 08:20:29 JST 月  4月 29 2013
+Control1      4%      8%      9%     12%     10%
+Data1         5%      3%      4%      5%      4%
+Time: 08:20:30 JST 月  4月 29 2013
+Control1      4%      9%      8%     12%     10%
+Data1         7%      4%      4%      5%      4%
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;グラフ表示:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;グラフ表示&lt;/h2&gt;
+
+&lt;p&gt;show cpu historyを使うとグラフっぽいので表示されます。
+Cisco IOSのshow processes cpu historyとそっくりです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show cpu history
+Time: 08:21:54 JST 月  4月 29 2013
+
+         1  2     211  31    1  4 111    1  1  121 1  23   11 1
+   696 990810997841107132677778 1371955961592131122022825854241
+100
+ 90
+ 80
+ 70
+ 60
+ 50
+ 40                             *
+ 30                    *        *                     **
+ 20         *     *    *     *  * * *           *     **
+ 10*** **** ***** **** ******** * ***********  *** *  ******* *
+   0....0....1....1....2....2....3....3....4....4....5....5....
+        5    0    5    0    5    0    5    0    5    0    5
+      Control CPU1:   CPU% per second (last 60 seconds)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;メモリ使用率を調べる:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;メモリ使用率を調べる&lt;/h1&gt;
+
+&lt;p&gt;メモリ使用率を調べるにはshow memoryを使います。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show memory
+         Total(KB)  Used       Free       Usage
+----------------------------------------------------
+Memory:  1535572    1322648    212924     86.1%
+
+
+System memory:
+Object size(byte)    Allocated(#)         Max(#)
+----------------------------------------------------------------
+4                    0                    0
+36                   113                  3639
+100                  524                  1926
+228                  10                   992
+484                  1                    503
+996                  72                   253
+2020                 1                    127
+4068                 24                   63
+
+aFleX memory:
+Object size(byte)    Allocated(#)         Max(#)
+----------------------------------------------------------------
+32                   294                  7278
+64                   1216                 3852
+128                  1158                 2620
+256                  31                   1596
+512                  75                   896
+1024                 10                   478
+2048                 0                    0
+4096                 2                    62
+
+SSL memory:
+Object size(byte)    Allocated(#)         Max(#)
+----------------------------------------------------------------
+64                   0                    0
+128                  0                    0
+320                  0                    0
+512                  0                    0
+768                  0                    0
+1792                 0                    0
+4096                 0                    0
+
+TCP memory:
+Object size(byte)    Allocated(#)         Max(#)
+----------------------------------------------------------------
+1104                 2                    225
+184                  0                    0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;プロセスを調べる:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;プロセスを調べる&lt;/h1&gt;
+
+&lt;p&gt;あまり使うことはないと思いますが、show process systemでプロセスの表示ができます。
+snmp使えない！！とかなった時とかに使うかも？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show process system
+a10mon is running
+syslogd is running
+a10logd is running
+a10timer is running
+a10Stat is running
+a10hm is running
+nsm is running
+imi is running
+ospfd is running
+ospf6d is running
+ripd is running
+ripngd is running
+bgpd is running
+isisd is running
+lacpd is running
+a10snmpd is running
+a10gmpd is running
+a10wa is running
+a10lb is running
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;プロセスの詳細を表示する:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;プロセスの詳細を表示する&lt;/h2&gt;
+
+&lt;p&gt;あとは隠しコマンドっぽい感じでshow process system detailというのが用意されています。
+?押しても出てきません。
+中ではLinuxが動いているので、それっぽいプロセスも見えますね。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show process system detail
+Process name                    state     PID    %CPU   %MEM   VSZ      RSS
+---------------------------------------------------------------------------
+init [3]                        running   1      0.0    0.0    2612     576
+[kthreadd]                      running   2      0.0    0.0    0        0
+[migration/0]                   running   3      0.0    0.0    0        0
+[ksoftirqd/0]                   running   4      0.0    0.0    0        0
+[watchdog/0]                    running   5      0.0    0.0    0        0
+[events/0]                      running   6      0.0    0.0    0        0
+[khelper]                       running   7      0.0    0.0    0        0
+[kblockd/0]                     running   68     0.0    0.0    0        0
+[kacpid]                        running   70     0.0    0.0    0        0
+[kacpi_notify]                  running   71     0.0    0.0    0        0
+[ata/0]                         running   125    0.0    0.0    0        0
+[ata_aux]                       running   126    0.0    0.0    0        0
+[kjsuspend_usbd]                 running   129    0.0    0.0    0        0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;インタフェース関連:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;インタフェース関連&lt;/h1&gt;
+
+&lt;p&gt;show interfacesでインタフェースの情報が取得できます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show interfaces
+  Ethernet 1 is up, line protocol is up
+  Hardware is GigabitEthernet, Address is 0015.5d64.ffc8
+  Internet address is 0.0.0.0, Subnet mask is 0.0.0.0
+  Configured Speed auto, Actual 1Gbit, Configured Duplex auto, Actual fdx
+  Member of L2 Vlan 200, Port is Untagged
+  Flow Control is disabled, IP MTU is 1500 bytes
+  Port as Mirror disabled, Monitoring this Port disabled
+  299942 packets input,  41259682 bytes
+  Received 0 broadcasts,  Received 0 multicasts,  Received 299942 unicasts
+  0 input errors,  0 CRC  0 frame
+  0 runts  0 giants
+  159574 packets output  12297119 bytes
+  Transmitted 0 broadcasts  0 multicasts  159574 unicasts
+  0 output errors  0 collisions
+  300 second input rate: 2744 bits/sec, 2 packets/sec, 0% utilization
+  300 second output rate: 848 bits/sec, 0 packets/sec, 0% utilization
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;簡易表示:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;簡易表示&lt;/h2&gt;
+
+&lt;p&gt;show interfaces briefでCisco IOSでいうshow ip interface briefっぽい表示もできます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show interfaces brief
+Port  Link  Dupl  Speed Trunk Vlan MAC             IP Address          IPs  Name
+------------------------------------------------------------------------------------
+mgmt  Up    Full  1000  N/A   N/A  0015.5d64.ff01  192.168.100.254/24    1
+1     Up    Full  1000  None  200  0015.5d64.ffc8  0.0.0.0/0             0
+2     Up    Full  1000  None  100  0015.5d64.ff64  0.0.0.0/0             0
+ve100 Up    N/A   N/A   N/A   100  0015.5d64.ff64  192.168.200.254/24    1
+ve200 Up    N/A   N/A   N/A   200  0015.5d64.ffc8  192.168.10.254/24     1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;統計情報:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;統計情報&lt;/h2&gt;
+
+&lt;p&gt;show interfaces statisticsでインタフェースのパケット数などが見えます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show interfaces statistics
+
+Eth InPPS          InBPS          OutPPS         OutBPS         Time
+--------------------------------------------------------------------------
+1   0.99           73.43          0.00           0.00           08:58:28
+2   0.99           63.51          0.00           0.00           08:58:28
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;arpテーブルの表示:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;ARPテーブルの表示&lt;/h2&gt;
+
+&lt;p&gt;show arpでARPテーブルが見えます。IPアドレスの指定も可能です。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show arp
+Total arp entries: 4 		Age time: 300 secs
+IP Address         MAC Address          Type         Age   Interface    Vlan
+---------------------------------------------------------------------------
+192.168.10.100     9027.e4fa.d512       Dynamic      209   ve200        200
+192.168.100.1      0019.55b9.53ae       Dynamic      3     Management   1
+192.168.100.20     001d.7d3e.88fb       Dynamic      138   Management   1
+192.168.200.1      0019.55b9.53ae       Dynamic      86    ve100        100
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;macアドレステーブルの表示:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;MACアドレステーブルの表示&lt;/h2&gt;
+
+&lt;p&gt;show mac-address-tableでMACアドレステーブルが見えます。
+ポート、VLAN、MACアドレスでのフィルタも可能です。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show mac-address-table
+Total active entries: 4 	Age time: 300 secs
+MAC-Address      Port     Type      Index     Vlan  Age
+---------------------------------------------------------
+0019.55b9.53b6   2        Dynamic   107       100   0
+0019.55b9.53ae   1        Dynamic   398       200   0
+9027.e4fa.d512   1        Dynamic   428       200   0
+0019.55b9.53ae   2        Dynamic   701       100   50
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;コンフィグを表示する:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;コンフィグを表示する&lt;/h1&gt;
+
+&lt;p&gt;show running-configで稼働中のコンフィグ、show startup-configで起動時に読み込まれるコンフィグが表示されます。
+Ciscoと一緒ですね。&lt;/p&gt;
+
+&lt;h2 id=&#34;一部抜き出して表示する:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;一部抜き出して表示する&lt;/h2&gt;
+
+&lt;p&gt;running-configの場合はinterface, slb, vlan, haなどの部分だけ抜き出して表示することも出来ます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show running-config interfaces
+interface management
+ ip address 192.168.100.254 255.255.255.0
+ ip default-gateway 192.168.100.1
+ ip control-apps-use-mgmt-port
+ access-list 99 in
+ bcast-rate-limit
+!
+interface ve 100
+ ip address 192.168.200.254 255.255.255.0
+!
+interface ve 200
+ ip address 192.168.10.254 255.255.255.0
+!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;デフォルト値も含めて表示する:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;デフォルト値も含めて表示する&lt;/h2&gt;
+
+&lt;p&gt;show running-config with-defaultで、デフォルト値も含めたコンフィグを表示できます。
+基本的にデフォルトの値は表示されないのですが、どうしても確認したい場合に使います。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show running-config with-default
+!Current configuration: 6632 bytes
+!Configuration last updated at 09:09:28 JST Mon Apr 29 2013
+!Configuration last saved at 09:09:31 JST Mon Apr 29 2013
+!version 2.7.0-P2, build 53 (Feb-21-2013,23:27)
+!
+system resource-usage template default
+   network-resources
+     static-mac-count 500
+     static-arp-count 128
+     static-neighbor-count 128
+     static-ipv4-route-count 4000
+     static-ipv6-route-count 4000
+   app-resources
+     real-server-count 128
+     service-group-count 128
+     virtual-server-count 64
+     health-monitor-count 1024
+     gslb-site-count 10
+     gslb-device-count 20
+     gslb-service-ip-count 100
+     gslb-service-port-count 200
+     gslb-zone-count 500
+     gslb-service-count 1000
+     gslb-policy-count 1000
+     gslb-ip-list-count 100
+     gslb-template-count 100
+     gslb-geo-location-count 500000
+     gslb-view-count 0
+!
+hostname SoftAX
+!
+clock timezone Asia/Tokyo
+!
+system resource-usage l4-session-count 2097152
+system resource-usage nat-pool-addr-count 10
+system resource-usage real-server-count 128
+....
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;起動時のコンフィグを確認する:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;起動時のコンフィグを確認する&lt;/h2&gt;
+
+&lt;p&gt;show startup-config allで現在使っているコンフィグの名前や、次回起動時のコンフィグ等が確認できます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show startup-config all
+Current startup-config profile: 2013-04-29
+Primary startup-config profile: 2013-04-29
+Secondary startup-config profile: Default
+Profile-Name                           Size    Time
+------------------------------------------------------------
+2013-04-29                             2146    2013-04-29  9:32
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;show startup-config profile のあとにプロファイル名を指定すると、中身も確認することができます。&lt;/p&gt;
+
+&lt;h1 id=&#34;繰り返してコマンドを実行する:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;繰り返してコマンドを実行する&lt;/h1&gt;
+
+&lt;p&gt;一定間隔でコマンドを実行し続けたい場合はrepeatコマンドを使います。　
+Ctrl+Cを押すまで止まりません。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#repeat 1 show memory system
+System Memory Usage:
+Total(KB)  Free       Shared     Buffers    Cached     Usage
+---------------------------------------------------------------------------
+1535572    106876     0          1488       106052     86.1%
+
+Refreshing command every 1 seconds. (press ^C to quit) Elapsed Time: 00:00:00
+System Memory Usage:
+Total(KB)  Free       Shared     Buffers    Cached     Usage
+---------------------------------------------------------------------------
+1535572    106876     0          1504       106052     86.1%
+
+Refreshing command every 1 seconds. (press ^C to quit) Elapsed Time: 00:00:01
+System Memory Usage:
+Total(KB)  Free       Shared     Buffers    Cached     Usage
+---------------------------------------------------------------------------
+1535572    106876     0          1504       106052     86.1%
+
+Refreshing command every 1 seconds. (press ^C to quit) Elapsed Time: 00:00:02
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;ログを表示する:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;ログを表示する&lt;/h1&gt;
+
+&lt;p&gt;show logでログの表示ができます。
+一番上が最新のもので下にいくにつれて古くなります。&lt;/p&gt;
+
+&lt;p&gt;実際に使う場合は show log length で行数を指定することが多いと思われます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show log length 10
+Log Buffer: 30000
+Apr 29 2013 09:47:58 Notice  [SYSTEM]:A cli session for user &amp;quot;admin&amp;quot; from 192.168.10.100 has been opened. Session ID assigned is 1.
+Apr 29 2013 09:47:55 Error   [SYSTEM]:The user, admin, from the remote host, 192.168.10.100, failed in the CLI authentication.
+Apr 29 2013 09:47:55 Warning [SYSTEM]:Local authentication failed(user: admin): Admin password error
+Apr 29 2013 09:47:10 Info    [AX]:Service https on virtual Server virtual-server-01 port 443 is up
+Apr 29 2013 09:47:10 Info    [AX]:Service tcp on virtual Server virtual-server-01 port 80 is up
+Apr 29 2013 09:46:59 Info    [HMON]:SLB server web-server-01 (192.168.10.100) TCP port 443 of group service-group-web-https is up.
+Apr 29 2013 09:46:59 Info    [HMON]:SLB server web-server-01 (192.168.10.100) port 443 is up
+Apr 29 2013 09:46:59 Info    [HMON]:SLB server web-server-01 (192.168.10.100) TCP port 80 of group service-group-web is up.
+Apr 29 2013 09:46:59 Info    [HMON]:SLB server web-server-01 (192.168.10.100) port 80 is up (HTTP Status Code OK)
+Apr 29 2013 09:46:58 Info    [WEB]:Web server started.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;テクニカルサポート向けの情報を取得する:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;テクニカルサポート向けの情報を取得する&lt;/h1&gt;
+
+&lt;p&gt;show techsupportでサポート向けの情報を表示します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show techsupport
+
+============= Clock Info ===================
+*09:59:22 JST 月  4月 29 2013
+
+============= Version Info =================
+AX Series Advanced Traffic Manager AXSoftAX
+  Copyright 2007-2012 by A10 Networks, Inc.  All A10 Networks products are
+  protected by one or more of the following US patents and patents pending:
+  7716378, 7675854, 7647635, 7552126, 20090049537, 20080229418, 20080040789,
+  20070283429, 20070271598, 20070180101
+....
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;show techsuport exportコマンドでftpなどに保存することも可能です。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#show techsupport export ?
+  use-mgmt-port  Use management port as source port
+  tftp:          Remote file path of tftp: file system(Format: tftp://host/file)
+  ftp:           Remote file path of ftp: file system(Format:
+                 ftp://[user@]host[:port]/file)
+  scp:           Remote file path of scp: file system(Format:
+                 scp://[user@]host/file)
+  rcp:           Remote file path of rcp: file system(Format:
+                 rcp://[user@]host/file)
+  sftp:          Remote file path of sftp: file system(Format:
+                 sftp://[user@]host/file)
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;バックアップ:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;バックアップ&lt;/h1&gt;
+
+&lt;h2 id=&#34;コンフィグのバックアップ:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;コンフィグのバックアップ&lt;/h2&gt;
+
+&lt;p&gt;コンフィグのバックアップを取得するには backup systemコマンドを使います。
+バックアップにはSSL証明書、秘密鍵等の情報も含まれます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#backup system use-mgmt-port ftp://192.168.100.20/config.tar.gz
+User name []?hoge
+Password []?
+
+.0 minutes 1 seconds
+System files backup succeeded
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;ログファイルのバックアップ:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;ログファイルのバックアップ&lt;/h2&gt;
+
+&lt;p&gt;ログファイルをバックアップするには backup logコマンドを使います。
+AXシリーズでは定期的にtechsupportを取得しており(デフォルトだと15分おき)、techsupportの結果も取得できます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX#backup log use-mgmt-port ftp://192.168.100.20/log.tar.gz
+User name []?hoge
+Password []?
+
+.0 minutes 1 seconds
+Log files backup succeeded
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;コンフィグのリストア:5d991d4e222909dadac42962ae7b2a8e&#34;&gt;コンフィグのリストア&lt;/h1&gt;
+
+&lt;p&gt;restoreコマンドでバックアップしたコンフィグからリストアできます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;SoftAX(config)#restore use-mgmt-port ftp://192.168.100.20/config.tar.gz
+User name []?hoge
+Password []?
+
+.0 minutes 1 seconds
+System files successful restored
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とりあえずはこんなところで。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SoftAXで遊んでみる</title>
+      <link>http://kyokoi1979.github.io/2012/12/30/softax%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%8B/</link>
+      <pubDate>Sun, 30 Dec 2012 00:00:00 +0000</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/2012/12/30/softax%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%8B/</guid>
+      <description>&lt;p&gt;仕事でA10 NetworksのAXシリーズを使う機会があったので仮想アプライアンス版のSoftAXで遊んでみます。
+トライアル版では30日の使用制限と5Mbpsの帯域制限がありますが、軽く遊ぶ程度なら十分だと思われます。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.a10networks.com/products/axseries-softax.php&#34;&gt;http://www.a10networks.com/products/axseries-softax.php&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下記のページで必要な事項を入れてすこし待つとダウンロード用とライセンス発行用のアドレスが記載されたメールが届くのでアクセスしてください。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.a10networks.com/softax_trial_license/&#34;&gt;http://www.a10networks.com/softax_trial_license/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;仮想アプライアンスはVMware ESX/ESXi 4.0以降用となっているのでうまいことインストールします。
+イメージを変換すればVMware Workstationなんかでも動くみたいです。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;初期設定&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;インストール直後は下記の通り設定されていますが、環境に合わせて変更する必要があります。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;IPアドレス&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;172.31.31.31 /24&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;ユーザ名&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;admin&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;パスワード&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;a10&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;enableパスワード&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;(ブランク)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;初期設定に必要なコマンド類はSoftAX Installation Guide(ライセンスのメールに記載されています)を読めばわかるようになっているので、うまいことやってください。&lt;/p&gt;
+
+&lt;p&gt;コマンド体系はほとんどCiscoのIOSと同じで、CiscoのL3スイッチやルータを触ったことがある人は取っ付きやすいと思います。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;AX system is ready now.
+
+[type ? for help]
+
+SoftAX&amp;gt;enable
+Password:
+SoftAX#configure terminal
+SoftAX(config)#interface management
+SoftAX(config-if:management)#ip address 192.168.100.50 /24
+SoftAX(config-if:management)#ip default-gateway 192.168.100.1
+SoftAX(config-if:management)#end
+SoftAX#write memory
+Building configuration...
+Write configuration to default startup-config
+SoftAX#
+SoftAX#show running-config interfaces management
+interface management
+ ip address 192.168.100.50 255.255.255.0
+ ip default-gateway 192.168.100.1
+!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あとはライセンスのインポートをして終了です。
+続きは気が向いたら書きます(&amp;lsquo;A`)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Vyatta,NetScreenでの拠点間VPN設定(後編)</title>
+      <link>http://kyokoi1979.github.io/2012/01/26/vyattanetscreen%E3%81%A7%E3%81%AE%E6%8B%A0%E7%82%B9%E9%96%93vpn%E8%A8%AD%E5%AE%9A%E5%BE%8C%E7%B7%A8/</link>
+      <pubDate>Thu, 26 Jan 2012 00:00:00 +0000</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/2012/01/26/vyattanetscreen%E3%81%A7%E3%81%AE%E6%8B%A0%E7%82%B9%E9%96%93vpn%E8%A8%AD%E5%AE%9A%E5%BE%8C%E7%B7%A8/</guid>
+      <description>
+
+&lt;p&gt;前編に引き続き、今回はNetScreen側での設定方法。
+構成は前回と同様です。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/20120125180313.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;VPN設定についてはルートベースにしました。&lt;/p&gt;
+
+&lt;h1 id=&#34;初期設定:9e29ad15e7fc57735ad0c5c29ae4a13f&#34;&gt;初期設定&lt;/h1&gt;
+
+&lt;p&gt;シリアルケーブルで接続するか、Trust側のインタフェースに接続してDHCP経由でIPアドレスを取得してtelnetで接続します。
+まずuntrustインタフェースのIPアドレス設定とルーティング設定をします。
+今回はtrustについてはデフォルトのまま使うので変更しません。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ns5gt-&amp;gt; set interface untrust ip 192.168.0.254/24
+ns5gt-&amp;gt; set route 0.0.0.0/0 gateway 192.168.0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;トンネルインタフェース作成:9e29ad15e7fc57735ad0c5c29ae4a13f&#34;&gt;トンネルインタフェース作成&lt;/h1&gt;
+
+&lt;p&gt;トンネルインタフェースと、ゾーンを作成します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ns5gt-&amp;gt; set zone name VPN
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次にトンネルインタフェースを作成します。
+ゾーンは先程作成したものを指定します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ns5gt-&amp;gt; set interface tunnel.1 zone VPN
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;トンネルインタフェースのIPをunnumberedに設定し、untrustインタフェースを割り当てます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ns5gt-&amp;gt; set interface tunnel.1 ip unnumbered interface untrust
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;確認するとこんな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ns5gt-&amp;gt; get interface
+
+A - Active, I - Inactive, U - Up, D - Down, R - Ready
+
+Interfaces in vsys Root:
+Name           IP Address         Zone        MAC            VLAN State VSD
+trust          192.168.1.1/24     Trust       0010.db85.a6a2    -   U   -
+untrust        192.168.0.254/24   Untrust     0010.db85.a6a1    -   U   -
+serial         0.0.0.0/0          Null        0010.db85.a6a6    -   D   -
+tun.1          unnumbered         VPN         untrust           -   D   -
+vlan1          0.0.0.0/0          VLAN        0010.db85.a6af    1   D   -
+null           0.0.0.0/0          Null        N/A               -   U   0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;vpn設定:9e29ad15e7fc57735ad0c5c29ae4a13f&#34;&gt;VPN設定&lt;/h1&gt;
+
+&lt;p&gt;PHASE 1設定。
+pre shared key, proposalはvyattaで設定したものと同様に。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ns5gt-&amp;gt; set ike gateway vyatta-gw address 10.0.0.254 Main outgoing-interface untrust preshare presharedkey proposal pre-g2-aes128-sha
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 2設定。
+proposalはvyattaと同様にし、先程作成したトンネルインタフェースをバインドします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ns5gt-&amp;gt; set vpn vyatta-ike gateway vyatta-gw no-replay tunnel idletime 0 proposal g2-esp-aes128-sha
+ns5gt-&amp;gt; set vpn vyatta-ike monitor source-interface trust destination-ip 10.0.100.1 rekey
+ns5gt-&amp;gt; set vpn vyatta-ike id 1 bind interface tunnel.1
+ns5gt-&amp;gt; set vpn vyatta-ike proxy-id local-ip 192.168.1.0/24 remote-ip 10.0.100.0/24 ANY
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以上の設定が適用されればIPsec SAがアクティブになるはずです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ns5gt-&amp;gt; get sa active
+Total active sa: 1
+total configured sa: 1
+HEX ID    Gateway         Port Algorithm     SPI      Life:sec kb Sta   PID vsys
+00000001&amp;lt;      10.0.0.254  500 esp:a128/sha1 13a4ad0b  3563 unlim A/U    -1 0
+00000001&amp;gt;      10.0.0.254  500 esp:a128/sha1 b73f1236  3563 unlim A/U    -1 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;ルーティング設定:9e29ad15e7fc57735ad0c5c29ae4a13f&#34;&gt;ルーティング設定&lt;/h1&gt;
+
+&lt;p&gt;VPN向けのルーティング設定です。
+宛て先はトンネルインタフェースになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ns5gt-&amp;gt; set route 10.0.100.0/24 interface tunnel.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;ポリシー設定:9e29ad15e7fc57735ad0c5c29ae4a13f&#34;&gt;ポリシー設定&lt;/h1&gt;
+
+&lt;p&gt;最後にお好みでポリシー設定をします。
+下記は全解放にしています。 :-)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ns5gt-&amp;gt; set policy from trust to VPN any any any permit
+ns5gt-&amp;gt; set policy from VPN to trust any any any permit
+ns5gt-&amp;gt; save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;動作確認:9e29ad15e7fc57735ad0c5c29ae4a13f&#34;&gt;動作確認&lt;/h1&gt;
+
+&lt;p&gt;それぞれのルータ配下のマシンからPINGでも打って動作確認します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ns5gt-&amp;gt; ping 10.0.100.1 from trust
+Type escape sequence to abort
+
+Sending 5, 100-byte ICMP Echos to 10.0.100.1, timeout is 1 seconds from trust
+!!!!!
+Success Rate is 100 percent (5/5), round-trip time min/avg/max=3/3/4 ms
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Vyatta,NetScreenでの拠点間VPN設定(前編)</title>
+      <link>http://kyokoi1979.github.io/2012/01/25/vyattanetscreen%E3%81%A7%E3%81%AE%E6%8B%A0%E7%82%B9%E9%96%93vpn%E8%A8%AD%E5%AE%9A%E5%89%8D%E7%B7%A8/</link>
+      <pubDate>Wed, 25 Jan 2012 00:00:00 +0000</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/2012/01/25/vyattanetscreen%E3%81%A7%E3%81%AE%E6%8B%A0%E7%82%B9%E9%96%93vpn%E8%A8%AD%E5%AE%9A%E5%89%8D%E7%B7%A8/</guid>
+      <description>
+
+&lt;p&gt;Vyatta 6.3とJuniper NetScreen 5GTを用いて拠点間VPN設定をしてみます。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;機種/OS&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;OS バージョン&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Vyatta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;VYATTA CORE 6.3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Juniper NetScreen 5GT&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;ScreenOS 5.4.0r5.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;NetScreenの機種、バージョンが古いですが現行バージョンでも基本的には同じ設定でいけるはずです。﻿
+ネットワーク構成は下記の通りとしました。&lt;/p&gt;
+
+&lt;h2 id=&#34;hugoshortcode-1:51131cb4d50388e5c9133630089510a4&#34;&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/20120125180313.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/h2&gt;
+
+&lt;p&gt;layout: post
+title: &amp;laquo;Vyatta,NetScreenでの拠点間VPN設定(前編)&amp;raquo;
+date: 2012-01-25
+comments: true&lt;/p&gt;
+
+&lt;h2 id=&#34;tags-vyatta-netscreen-vpn-network:51131cb4d50388e5c9133630089510a4&#34;&gt;tags: [Vyatta, NetScreen, VPN, Network]&lt;/h2&gt;
+
+&lt;p&gt;Vyatta 6.3とJuniper NetScreen 5GTを用いて拠点間VPN設定をしてみます。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;機種/OS&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;OS バージョン&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Vyatta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;VYATTA CORE 6.3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Juniper NetScreen 5GT&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;ScreenOS 5.4.0r5.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;NetScreenの機種、バージョンが古いですが現行バージョンでも基本的には同じ設定でいけるはずです。﻿
+ネットワーク構成は下記の通りとしました。&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/20120125180313.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;h1 id=&#34;初期設定:51131cb4d50388e5c9133630089510a4&#34;&gt;初期設定&lt;/h1&gt;
+
+&lt;p&gt;まず、コンソール経由でVyattaへアクセスし、IPアドレス、ルーティング設定とSSHの有効化をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta:~$ configure
+[edit]
+vyatta@vyatta# set interfaces ethernet eth0 address 10.0.0.254/24
+vyatta@vyatta# set interfaces ethernet eth1 address 10.0.100.1/24
+vyatta@vyatta# set protocols static route 0.0.0.0/0 next-hop 10.0.0.1
+vyatta@vyatta# set service ssh
+vyatta@vyatta# top
+vyatta@vyatta# commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以降はSSH経由で設定します。&lt;/p&gt;
+
+&lt;h1 id=&#34;vpn設定:51131cb4d50388e5c9133630089510a4&#34;&gt;VPN設定&lt;/h1&gt;
+
+&lt;h2 id=&#34;まず外部向けのインタフェースでvpnを有効にします:51131cb4d50388e5c9133630089510a4&#34;&gt;まず外部向けのインタフェースでVPNを有効にします。&lt;/h2&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;layout: post
+title: &amp;laquo;Vyatta,NetScreenでの拠点間VPN設定(前編)&amp;raquo;
+date: 2012-01-25
+comments: true&lt;/p&gt;
+
+&lt;h2 id=&#34;tags-vyatta-netscreen-vpn-network-1:51131cb4d50388e5c9133630089510a4&#34;&gt;tags: [Vyatta, NetScreen, VPN, Network]&lt;/h2&gt;
+
+&lt;p&gt;Vyatta 6.3とJuniper NetScreen 5GTを用いて拠点間VPN設定をしてみます。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;機種/OS&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;OS バージョン&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Vyatta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;VYATTA CORE 6.3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Juniper NetScreen 5GT&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;ScreenOS 5.4.0r5.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;NetScreenの機種、バージョンが古いですが現行バージョンでも基本的には同じ設定でいけるはずです。﻿
+ネットワーク構成は下記の通りとしました。&lt;/p&gt;
+
+&lt;h2 id=&#34;hugoshortcode-3:51131cb4d50388e5c9133630089510a4&#34;&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/20120125180313.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/h2&gt;
+
+&lt;p&gt;layout: post
+title: &amp;laquo;Vyatta,NetScreenでの拠点間VPN設定(前編)&amp;raquo;
+date: 2012-01-25
+comments: true&lt;/p&gt;
+
+&lt;h2 id=&#34;tags-vyatta-netscreen-vpn-network-2:51131cb4d50388e5c9133630089510a4&#34;&gt;tags: [Vyatta, NetScreen, VPN, Network]&lt;/h2&gt;
+
+&lt;p&gt;Vyatta 6.3とJuniper NetScreen 5GTを用いて拠点間VPN設定をしてみます。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;機種/OS&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;OS バージョン&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Vyatta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;VYATTA CORE 6.3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Juniper NetScreen 5GT&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;ScreenOS 5.4.0r5.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;NetScreenの機種、バージョンが古いですが現行バージョンでも基本的には同じ設定でいけるはずです。﻿
+ネットワーク構成は下記の通りとしました。&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/20120125180313.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;h1 id=&#34;初期設定-1:51131cb4d50388e5c9133630089510a4&#34;&gt;初期設定&lt;/h1&gt;
+
+&lt;p&gt;まず、コンソール経由でVyattaへアクセスし、IPアドレス、ルーティング設定とSSHの有効化をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta:~$ configure
+[edit]
+vyatta@vyatta# set interfaces ethernet eth0 address 10.0.0.254/24
+vyatta@vyatta# set interfaces ethernet eth1 address 10.0.100.1/24
+vyatta@vyatta# set protocols static route 0.0.0.0/0 next-hop 10.0.0.1
+vyatta@vyatta# set service ssh
+vyatta@vyatta# top
+vyatta@vyatta# commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以降はSSH経由で設定します。&lt;/p&gt;
+
+&lt;h1 id=&#34;vpn設定-1:51131cb4d50388e5c9133630089510a4&#34;&gt;VPN設定&lt;/h1&gt;
+
+&lt;h2 id=&#34;まず外部向けのインタフェースでvpnを有効にします-1:51131cb4d50388e5c9133630089510a4&#34;&gt;まず外部向けのインタフェースでVPNを有効にします。&lt;/h2&gt;
+
+&lt;p&gt;layout: post
+title: &amp;laquo;Vyatta,NetScreenでの拠点間VPN設定(前編)&amp;raquo;
+date: 2012-01-25
+comments: true&lt;/p&gt;
+
+&lt;h2 id=&#34;tags-vyatta-netscreen-vpn-network-3:51131cb4d50388e5c9133630089510a4&#34;&gt;tags: [Vyatta, NetScreen, VPN, Network]&lt;/h2&gt;
+
+&lt;p&gt;Vyatta 6.3とJuniper NetScreen 5GTを用いて拠点間VPN設定をしてみます。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;機種/OS&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;OS バージョン&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Vyatta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;VYATTA CORE 6.3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Juniper NetScreen 5GT&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;ScreenOS 5.4.0r5.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;NetScreenの機種、バージョンが古いですが現行バージョンでも基本的には同じ設定でいけるはずです。﻿
+ネットワーク構成は下記の通りとしました。&lt;/p&gt;
+
+&lt;h2 id=&#34;hugoshortcode-5:51131cb4d50388e5c9133630089510a4&#34;&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/20120125180313.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/h2&gt;
+
+&lt;p&gt;layout: post
+title: &amp;laquo;Vyatta,NetScreenでの拠点間VPN設定(前編)&amp;raquo;
+date: 2012-01-25
+comments: true&lt;/p&gt;
+
+&lt;h2 id=&#34;tags-vyatta-netscreen-vpn-network-4:51131cb4d50388e5c9133630089510a4&#34;&gt;tags: [Vyatta, NetScreen, VPN, Network]&lt;/h2&gt;
+
+&lt;p&gt;Vyatta 6.3とJuniper NetScreen 5GTを用いて拠点間VPN設定をしてみます。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;機種/OS&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;OS バージョン&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Vyatta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;VYATTA CORE 6.3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Juniper NetScreen 5GT&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;ScreenOS 5.4.0r5.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;NetScreenの機種、バージョンが古いですが現行バージョンでも基本的には同じ設定でいけるはずです。﻿
+ネットワーク構成は下記の通りとしました。&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/20120125180313.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;h1 id=&#34;初期設定-2:51131cb4d50388e5c9133630089510a4&#34;&gt;初期設定&lt;/h1&gt;
+
+&lt;p&gt;まず、コンソール経由でVyattaへアクセスし、IPアドレス、ルーティング設定とSSHの有効化をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta:~$ configure
+[edit]
+vyatta@vyatta# set interfaces ethernet eth0 address 10.0.0.254/24
+vyatta@vyatta# set interfaces ethernet eth1 address 10.0.100.1/24
+vyatta@vyatta# set protocols static route 0.0.0.0/0 next-hop 10.0.0.1
+vyatta@vyatta# set service ssh
+vyatta@vyatta# top
+vyatta@vyatta# commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以降はSSH経由で設定します。&lt;/p&gt;
+
+&lt;h1 id=&#34;vpn設定-2:51131cb4d50388e5c9133630089510a4&#34;&gt;VPN設定&lt;/h1&gt;
+
+&lt;p&gt;まず外部向けのインタフェースでVPNを有効にします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# set vpn ipsec ipsec-interfaces interface eth0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 1設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec ike-group ns-ike proposal 1
+vyatta@vyatta# set lifetime 28800
+vyatta@vyatta# set proposal 1 dh-group 2
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 2設定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec esp-group ns-esp
+vyatta@vyatta# set lifetime 3600
+vyatta@vyatta# set pfs enable
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最後にpreshared keyなどを設定して終わり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec site-to-site peer 192.168.0.254
+vyatta@vyatta# set authentication mode pre-shared-secret
+vyatta@vyatta# set authentication pre-shared-secret &#39;presharedkey&#39;
+vyatta@vyatta# set ike-group ns-ike
+vyatta@vyatta# set local-ip 10.0.0.254
+vyatta@vyatta# set tunnel 1 esp-group ns-esp
+vyatta@vyatta# set tunnel 1 local subnet 10.0.100.0/24
+vyatta@vyatta# set tunnel 1 remote subnet 192.168.1.0/24
+vyatta@vyatta# commit
+vyatta@vyatta# save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;VPN部分のコンフィグはこんな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# show vpn ipsec
+ esp-group ns-esp {
+     lifetime 3600
+     pfs enable
+     proposal 1 {
+         encryption aes128
+         hash sha1
+     }
+ }
+ ike-group ns-ike {
+     lifetime 28800
+     proposal 1 {
+         dh-group 2
+         encryption aes128
+         hash sha1
+     }
+ }
+ ipsec-interfaces {
+     interface eth0
+ }
+ site-to-site {
+     peer 192.168.0.254 {
+         authentication {
+             mode pre-shared-secret
+             pre-shared-secret presharedkey
+         }
+         ike-group ns-ike
+         local-ip 10.0.0.254
+         tunnel 1 {
+             esp-group ns-esp
+             local {
+                 subnet 10.0.100.0/24
+             }
+             remote {
+                 subnet 192.168.1.0/24
+             }
+         }
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;初期設定-3:51131cb4d50388e5c9133630089510a4&#34;&gt;初期設定&lt;/h1&gt;
+
+&lt;p&gt;まず、コンソール経由でVyattaへアクセスし、IPアドレス、ルーティング設定とSSHの有効化をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta:~$ configure
+[edit]
+vyatta@vyatta# set interfaces ethernet eth0 address 10.0.0.254/24
+vyatta@vyatta# set interfaces ethernet eth1 address 10.0.100.1/24
+vyatta@vyatta# set protocols static route 0.0.0.0/0 next-hop 10.0.0.1
+vyatta@vyatta# set service ssh
+vyatta@vyatta# top
+vyatta@vyatta# commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以降はSSH経由で設定します。&lt;/p&gt;
+
+&lt;h1 id=&#34;vpn設定-3:51131cb4d50388e5c9133630089510a4&#34;&gt;VPN設定&lt;/h1&gt;
+
+&lt;p&gt;まず外部向けのインタフェースでVPNを有効にします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# set vpn ipsec ipsec-interfaces interface eth0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 1設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec ike-group ns-ike proposal 1
+vyatta@vyatta# set lifetime 28800
+vyatta@vyatta# set proposal 1 dh-group 2
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 2設定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec esp-group ns-esp
+vyatta@vyatta# set lifetime 3600
+vyatta@vyatta# set pfs enable
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最後にpreshared keyなどを設定して終わり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec site-to-site peer 192.168.0.254
+vyatta@vyatta# set authentication mode pre-shared-secret
+vyatta@vyatta# set authentication pre-shared-secret &#39;presharedkey&#39;
+vyatta@vyatta# set ike-group ns-ike
+vyatta@vyatta# set local-ip 10.0.0.254
+vyatta@vyatta# set tunnel 1 esp-group ns-esp
+vyatta@vyatta# set tunnel 1 local subnet 10.0.100.0/24
+vyatta@vyatta# set tunnel 1 remote subnet 192.168.1.0/24
+vyatta@vyatta# commit
+vyatta@vyatta# save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;VPN部分のコンフィグはこんな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# show vpn ipsec
+ esp-group ns-esp {
+     lifetime 3600
+     pfs enable
+     proposal 1 {
+         encryption aes128
+         hash sha1
+     }
+ }
+ ike-group ns-ike {
+     lifetime 28800
+     proposal 1 {
+         dh-group 2
+         encryption aes128
+         hash sha1
+     }
+ }
+ ipsec-interfaces {
+     interface eth0
+ }
+ site-to-site {
+     peer 192.168.0.254 {
+         authentication {
+             mode pre-shared-secret
+             pre-shared-secret presharedkey
+         }
+         ike-group ns-ike
+         local-ip 10.0.0.254
+         tunnel 1 {
+             esp-group ns-esp
+             local {
+                 subnet 10.0.100.0/24
+             }
+             remote {
+                 subnet 192.168.1.0/24
+             }
+         }
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# set vpn ipsec ipsec-interfaces interface eth0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 1設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec ike-group ns-ike proposal 1
+vyatta@vyatta# set lifetime 28800
+vyatta@vyatta# set proposal 1 dh-group 2
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 2設定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec esp-group ns-esp
+vyatta@vyatta# set lifetime 3600
+vyatta@vyatta# set pfs enable
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最後にpreshared keyなどを設定して終わり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec site-to-site peer 192.168.0.254
+vyatta@vyatta# set authentication mode pre-shared-secret
+vyatta@vyatta# set authentication pre-shared-secret &#39;presharedkey&#39;
+vyatta@vyatta# set ike-group ns-ike
+vyatta@vyatta# set local-ip 10.0.0.254
+vyatta@vyatta# set tunnel 1 esp-group ns-esp
+vyatta@vyatta# set tunnel 1 local subnet 10.0.100.0/24
+vyatta@vyatta# set tunnel 1 remote subnet 192.168.1.0/24
+vyatta@vyatta# commit
+vyatta@vyatta# save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;VPN部分のコンフィグはこんな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# show vpn ipsec
+ esp-group ns-esp {
+     lifetime 3600
+     pfs enable
+     proposal 1 {
+         encryption aes128
+         hash sha1
+     }
+ }
+ ike-group ns-ike {
+     lifetime 28800
+     proposal 1 {
+         dh-group 2
+         encryption aes128
+         hash sha1
+     }
+ }
+ ipsec-interfaces {
+     interface eth0
+ }
+ site-to-site {
+     peer 192.168.0.254 {
+         authentication {
+             mode pre-shared-secret
+             pre-shared-secret presharedkey
+         }
+         ike-group ns-ike
+         local-ip 10.0.0.254
+         tunnel 1 {
+             esp-group ns-esp
+             local {
+                 subnet 10.0.100.0/24
+             }
+             remote {
+                 subnet 192.168.1.0/24
+             }
+         }
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;初期設定-4:51131cb4d50388e5c9133630089510a4&#34;&gt;初期設定&lt;/h1&gt;
+
+&lt;p&gt;まず、コンソール経由でVyattaへアクセスし、IPアドレス、ルーティング設定とSSHの有効化をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta:~$ configure
+[edit]
+vyatta@vyatta# set interfaces ethernet eth0 address 10.0.0.254/24
+vyatta@vyatta# set interfaces ethernet eth1 address 10.0.100.1/24
+vyatta@vyatta# set protocols static route 0.0.0.0/0 next-hop 10.0.0.1
+vyatta@vyatta# set service ssh
+vyatta@vyatta# top
+vyatta@vyatta# commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以降はSSH経由で設定します。&lt;/p&gt;
+
+&lt;h1 id=&#34;vpn設定-4:51131cb4d50388e5c9133630089510a4&#34;&gt;VPN設定&lt;/h1&gt;
+
+&lt;p&gt;まず外部向けのインタフェースでVPNを有効にします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# set vpn ipsec ipsec-interfaces interface eth0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 1設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec ike-group ns-ike proposal 1
+vyatta@vyatta# set lifetime 28800
+vyatta@vyatta# set proposal 1 dh-group 2
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 2設定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec esp-group ns-esp
+vyatta@vyatta# set lifetime 3600
+vyatta@vyatta# set pfs enable
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最後にpreshared keyなどを設定して終わり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec site-to-site peer 192.168.0.254
+vyatta@vyatta# set authentication mode pre-shared-secret
+vyatta@vyatta# set authentication pre-shared-secret &#39;presharedkey&#39;
+vyatta@vyatta# set ike-group ns-ike
+vyatta@vyatta# set local-ip 10.0.0.254
+vyatta@vyatta# set tunnel 1 esp-group ns-esp
+vyatta@vyatta# set tunnel 1 local subnet 10.0.100.0/24
+vyatta@vyatta# set tunnel 1 remote subnet 192.168.1.0/24
+vyatta@vyatta# commit
+vyatta@vyatta# save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;VPN部分のコンフィグはこんな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# show vpn ipsec
+ esp-group ns-esp {
+     lifetime 3600
+     pfs enable
+     proposal 1 {
+         encryption aes128
+         hash sha1
+     }
+ }
+ ike-group ns-ike {
+     lifetime 28800
+     proposal 1 {
+         dh-group 2
+         encryption aes128
+         hash sha1
+     }
+ }
+ ipsec-interfaces {
+     interface eth0
+ }
+ site-to-site {
+     peer 192.168.0.254 {
+         authentication {
+             mode pre-shared-secret
+             pre-shared-secret presharedkey
+         }
+         ike-group ns-ike
+         local-ip 10.0.0.254
+         tunnel 1 {
+             esp-group ns-esp
+             local {
+                 subnet 10.0.100.0/24
+             }
+             remote {
+                 subnet 192.168.1.0/24
+             }
+         }
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;layout: post
+title: &amp;laquo;Vyatta,NetScreenでの拠点間VPN設定(前編)&amp;raquo;
+date: 2012-01-25
+comments: true&lt;/p&gt;
+
+&lt;h2 id=&#34;tags-vyatta-netscreen-vpn-network-5:51131cb4d50388e5c9133630089510a4&#34;&gt;tags: [Vyatta, NetScreen, VPN, Network]&lt;/h2&gt;
+
+&lt;p&gt;Vyatta 6.3とJuniper NetScreen 5GTを用いて拠点間VPN設定をしてみます。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;機種/OS&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;OS バージョン&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Vyatta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;VYATTA CORE 6.3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Juniper NetScreen 5GT&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;ScreenOS 5.4.0r5.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;NetScreenの機種、バージョンが古いですが現行バージョンでも基本的には同じ設定でいけるはずです。﻿
+ネットワーク構成は下記の通りとしました。&lt;/p&gt;
+
+&lt;h2 id=&#34;hugoshortcode-7:51131cb4d50388e5c9133630089510a4&#34;&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/20120125180313.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/h2&gt;
+
+&lt;p&gt;layout: post
+title: &amp;laquo;Vyatta,NetScreenでの拠点間VPN設定(前編)&amp;raquo;
+date: 2012-01-25
+comments: true&lt;/p&gt;
+
+&lt;h2 id=&#34;tags-vyatta-netscreen-vpn-network-6:51131cb4d50388e5c9133630089510a4&#34;&gt;tags: [Vyatta, NetScreen, VPN, Network]&lt;/h2&gt;
+
+&lt;p&gt;Vyatta 6.3とJuniper NetScreen 5GTを用いて拠点間VPN設定をしてみます。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;left&#34;&gt;機種/OS&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;OS バージョン&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Vyatta&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;VYATTA CORE 6.3&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;left&#34;&gt;Juniper NetScreen 5GT&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;ScreenOS 5.4.0r5.0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;NetScreenの機種、バージョンが古いですが現行バージョンでも基本的には同じ設定でいけるはずです。﻿
+ネットワーク構成は下記の通りとしました。&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/20120125180313.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;h1 id=&#34;初期設定-5:51131cb4d50388e5c9133630089510a4&#34;&gt;初期設定&lt;/h1&gt;
+
+&lt;p&gt;まず、コンソール経由でVyattaへアクセスし、IPアドレス、ルーティング設定とSSHの有効化をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta:~$ configure
+[edit]
+vyatta@vyatta# set interfaces ethernet eth0 address 10.0.0.254/24
+vyatta@vyatta# set interfaces ethernet eth1 address 10.0.100.1/24
+vyatta@vyatta# set protocols static route 0.0.0.0/0 next-hop 10.0.0.1
+vyatta@vyatta# set service ssh
+vyatta@vyatta# top
+vyatta@vyatta# commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以降はSSH経由で設定します。&lt;/p&gt;
+
+&lt;h1 id=&#34;vpn設定-5:51131cb4d50388e5c9133630089510a4&#34;&gt;VPN設定&lt;/h1&gt;
+
+&lt;p&gt;まず外部向けのインタフェースでVPNを有効にします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# set vpn ipsec ipsec-interfaces interface eth0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 1設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec ike-group ns-ike proposal 1
+vyatta@vyatta# set lifetime 28800
+vyatta@vyatta# set proposal 1 dh-group 2
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 2設定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec esp-group ns-esp
+vyatta@vyatta# set lifetime 3600
+vyatta@vyatta# set pfs enable
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最後にpreshared keyなどを設定して終わり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec site-to-site peer 192.168.0.254
+vyatta@vyatta# set authentication mode pre-shared-secret
+vyatta@vyatta# set authentication pre-shared-secret &#39;presharedkey&#39;
+vyatta@vyatta# set ike-group ns-ike
+vyatta@vyatta# set local-ip 10.0.0.254
+vyatta@vyatta# set tunnel 1 esp-group ns-esp
+vyatta@vyatta# set tunnel 1 local subnet 10.0.100.0/24
+vyatta@vyatta# set tunnel 1 remote subnet 192.168.1.0/24
+vyatta@vyatta# commit
+vyatta@vyatta# save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;VPN部分のコンフィグはこんな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# show vpn ipsec
+ esp-group ns-esp {
+     lifetime 3600
+     pfs enable
+     proposal 1 {
+         encryption aes128
+         hash sha1
+     }
+ }
+ ike-group ns-ike {
+     lifetime 28800
+     proposal 1 {
+         dh-group 2
+         encryption aes128
+         hash sha1
+     }
+ }
+ ipsec-interfaces {
+     interface eth0
+ }
+ site-to-site {
+     peer 192.168.0.254 {
+         authentication {
+             mode pre-shared-secret
+             pre-shared-secret presharedkey
+         }
+         ike-group ns-ike
+         local-ip 10.0.0.254
+         tunnel 1 {
+             esp-group ns-esp
+             local {
+                 subnet 10.0.100.0/24
+             }
+             remote {
+                 subnet 192.168.1.0/24
+             }
+         }
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;初期設定-6:51131cb4d50388e5c9133630089510a4&#34;&gt;初期設定&lt;/h1&gt;
+
+&lt;p&gt;まず、コンソール経由でVyattaへアクセスし、IPアドレス、ルーティング設定とSSHの有効化をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta:~$ configure
+[edit]
+vyatta@vyatta# set interfaces ethernet eth0 address 10.0.0.254/24
+vyatta@vyatta# set interfaces ethernet eth1 address 10.0.100.1/24
+vyatta@vyatta# set protocols static route 0.0.0.0/0 next-hop 10.0.0.1
+vyatta@vyatta# set service ssh
+vyatta@vyatta# top
+vyatta@vyatta# commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以降はSSH経由で設定します。&lt;/p&gt;
+
+&lt;h1 id=&#34;vpn設定-6:51131cb4d50388e5c9133630089510a4&#34;&gt;VPN設定&lt;/h1&gt;
+
+&lt;p&gt;まず外部向けのインタフェースでVPNを有効にします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# set vpn ipsec ipsec-interfaces interface eth0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 1設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec ike-group ns-ike proposal 1
+vyatta@vyatta# set lifetime 28800
+vyatta@vyatta# set proposal 1 dh-group 2
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 2設定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec esp-group ns-esp
+vyatta@vyatta# set lifetime 3600
+vyatta@vyatta# set pfs enable
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最後にpreshared keyなどを設定して終わり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec site-to-site peer 192.168.0.254
+vyatta@vyatta# set authentication mode pre-shared-secret
+vyatta@vyatta# set authentication pre-shared-secret &#39;presharedkey&#39;
+vyatta@vyatta# set ike-group ns-ike
+vyatta@vyatta# set local-ip 10.0.0.254
+vyatta@vyatta# set tunnel 1 esp-group ns-esp
+vyatta@vyatta# set tunnel 1 local subnet 10.0.100.0/24
+vyatta@vyatta# set tunnel 1 remote subnet 192.168.1.0/24
+vyatta@vyatta# commit
+vyatta@vyatta# save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;VPN部分のコンフィグはこんな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# show vpn ipsec
+ esp-group ns-esp {
+     lifetime 3600
+     pfs enable
+     proposal 1 {
+         encryption aes128
+         hash sha1
+     }
+ }
+ ike-group ns-ike {
+     lifetime 28800
+     proposal 1 {
+         dh-group 2
+         encryption aes128
+         hash sha1
+     }
+ }
+ ipsec-interfaces {
+     interface eth0
+ }
+ site-to-site {
+     peer 192.168.0.254 {
+         authentication {
+             mode pre-shared-secret
+             pre-shared-secret presharedkey
+         }
+         ike-group ns-ike
+         local-ip 10.0.0.254
+         tunnel 1 {
+             esp-group ns-esp
+             local {
+                 subnet 10.0.100.0/24
+             }
+             remote {
+                 subnet 192.168.1.0/24
+             }
+         }
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# set vpn ipsec ipsec-interfaces interface eth0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 1設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec ike-group ns-ike proposal 1
+vyatta@vyatta# set lifetime 28800
+vyatta@vyatta# set proposal 1 dh-group 2
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 2設定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec esp-group ns-esp
+vyatta@vyatta# set lifetime 3600
+vyatta@vyatta# set pfs enable
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最後にpreshared keyなどを設定して終わり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec site-to-site peer 192.168.0.254
+vyatta@vyatta# set authentication mode pre-shared-secret
+vyatta@vyatta# set authentication pre-shared-secret &#39;presharedkey&#39;
+vyatta@vyatta# set ike-group ns-ike
+vyatta@vyatta# set local-ip 10.0.0.254
+vyatta@vyatta# set tunnel 1 esp-group ns-esp
+vyatta@vyatta# set tunnel 1 local subnet 10.0.100.0/24
+vyatta@vyatta# set tunnel 1 remote subnet 192.168.1.0/24
+vyatta@vyatta# commit
+vyatta@vyatta# save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;VPN部分のコンフィグはこんな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# show vpn ipsec
+ esp-group ns-esp {
+     lifetime 3600
+     pfs enable
+     proposal 1 {
+         encryption aes128
+         hash sha1
+     }
+ }
+ ike-group ns-ike {
+     lifetime 28800
+     proposal 1 {
+         dh-group 2
+         encryption aes128
+         hash sha1
+     }
+ }
+ ipsec-interfaces {
+     interface eth0
+ }
+ site-to-site {
+     peer 192.168.0.254 {
+         authentication {
+             mode pre-shared-secret
+             pre-shared-secret presharedkey
+         }
+         ike-group ns-ike
+         local-ip 10.0.0.254
+         tunnel 1 {
+             esp-group ns-esp
+             local {
+                 subnet 10.0.100.0/24
+             }
+             remote {
+                 subnet 192.168.1.0/24
+             }
+         }
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;初期設定-7:51131cb4d50388e5c9133630089510a4&#34;&gt;初期設定&lt;/h1&gt;
+
+&lt;p&gt;まず、コンソール経由でVyattaへアクセスし、IPアドレス、ルーティング設定とSSHの有効化をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta:~$ configure
+[edit]
+vyatta@vyatta# set interfaces ethernet eth0 address 10.0.0.254/24
+vyatta@vyatta# set interfaces ethernet eth1 address 10.0.100.1/24
+vyatta@vyatta# set protocols static route 0.0.0.0/0 next-hop 10.0.0.1
+vyatta@vyatta# set service ssh
+vyatta@vyatta# top
+vyatta@vyatta# commit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以降はSSH経由で設定します。&lt;/p&gt;
+
+&lt;h1 id=&#34;vpn設定-7:51131cb4d50388e5c9133630089510a4&#34;&gt;VPN設定&lt;/h1&gt;
+
+&lt;p&gt;まず外部向けのインタフェースでVPNを有効にします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# set vpn ipsec ipsec-interfaces interface eth0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 1設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec ike-group ns-ike proposal 1
+vyatta@vyatta# set lifetime 28800
+vyatta@vyatta# set proposal 1 dh-group 2
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHASE 2設定&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec esp-group ns-esp
+vyatta@vyatta# set lifetime 3600
+vyatta@vyatta# set pfs enable
+vyatta@vyatta# set proposal 1 encryption aes128
+vyatta@vyatta# set proposal 1 hash sha1
+vyatta@vyatta# top
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最後にpreshared keyなどを設定して終わり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# edit vpn ipsec site-to-site peer 192.168.0.254
+vyatta@vyatta# set authentication mode pre-shared-secret
+vyatta@vyatta# set authentication pre-shared-secret &#39;presharedkey&#39;
+vyatta@vyatta# set ike-group ns-ike
+vyatta@vyatta# set local-ip 10.0.0.254
+vyatta@vyatta# set tunnel 1 esp-group ns-esp
+vyatta@vyatta# set tunnel 1 local subnet 10.0.100.0/24
+vyatta@vyatta# set tunnel 1 remote subnet 192.168.1.0/24
+vyatta@vyatta# commit
+vyatta@vyatta# save
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;VPN部分のコンフィグはこんな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vyatta@vyatta# show vpn ipsec
+ esp-group ns-esp {
+     lifetime 3600
+     pfs enable
+     proposal 1 {
+         encryption aes128
+         hash sha1
+     }
+ }
+ ike-group ns-ike {
+     lifetime 28800
+     proposal 1 {
+         dh-group 2
+         encryption aes128
+         hash sha1
+     }
+ }
+ ipsec-interfaces {
+     interface eth0
+ }
+ site-to-site {
+     peer 192.168.0.254 {
+         authentication {
+             mode pre-shared-secret
+             pre-shared-secret presharedkey
+         }
+         ike-group ns-ike
+         local-ip 10.0.0.254
+         tunnel 1 {
+             esp-group ns-esp
+             local {
+                 subnet 10.0.100.0/24
+             }
+             remote {
+                 subnet 192.168.1.0/24
+             }
+         }
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>さくらのクラウドのAPIで遊んでみる</title>
+      <link>http://kyokoi1979.github.io/2012/01/20/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AEapi%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%8B/</link>
+      <pubDate>Fri, 20 Jan 2012 00:00:00 +0000</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/2012/01/20/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AEapi%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%8B/</guid>
+      <description>&lt;p&gt;さくらのクラウドのAPIが公開されているので遊んでみる。&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;サンプルのコードはPerlだけど、勉強のためRubyに。&lt;/p&gt;
+
+&lt;p&gt;アクセストークンなどはコントロールパネルの「設定」=&amp;gt;「APIキー管理」で取得したものを使う。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env ruby
+
+require &#39;net/https&#39;
+require &#39;uri&#39;
+require &#39;json&#39;
+
+access_token = &amp;quot;XXXXXXXXXX&amp;quot;
+access_token_secret = &amp;quot;XXXXXXXXXXXXXXXXXXXXX&amp;quot;
+uri = URI.parse(&amp;quot;https://secure.sakura.ad.jp/cloud/api/cloud/0.2/server/&amp;quot;)
+
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+body = http.start { |http|
+  req = Net::HTTP::Get.new(uri.path)
+  req.basic_auth(access_token, access_token_secret)
+  http.request(req).body
+}
+
+puts JSON.pretty_generate(JSON.parse(body))
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;実行するとこんなかんじ。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;From&amp;quot;: 0,
+  &amp;quot;Count&amp;quot;: 2,
+  &amp;quot;Total&amp;quot;: 2,
+  &amp;quot;Servers&amp;quot;: [
+    {
+      &amp;quot;Index&amp;quot;: 0,
+      &amp;quot;ID&amp;quot;: &amp;quot;XXXXXXXX&amp;quot;,
+      &amp;quot;Name&amp;quot;: &amp;quot;Fedora&amp;quot;,
+      &amp;quot;HostName&amp;quot;: &amp;quot;localhost&amp;quot;,
+      &amp;quot;Description&amp;quot;: &amp;quot;Fedora15&amp;quot;,
+      &amp;quot;CreatedAt&amp;quot;: &amp;quot;2011-11-25T10:28:31+09:00&amp;quot;,
+      &amp;quot;Icon&amp;quot;: {
+        &amp;quot;ID&amp;quot;: &amp;quot;XXXXXXXXXXX&amp;quot;,
+        &amp;quot;URL&amp;quot;: &amp;quot;https://secure.sakura.ad.jp/cloud/api/cloud/0.2/icon/112300511983.png&amp;quot;,
+        &amp;quot;Name&amp;quot;: &amp;quot;Fedora&amp;quot;,
+        &amp;quot;Scope&amp;quot;: &amp;quot;shared&amp;quot;
+      },
+      &amp;quot;ServerPlan&amp;quot;: {
+        &amp;quot;ID&amp;quot;: 1,
+        &amp;quot;Name&amp;quot;: &amp;quot;プラン1&amp;quot;,
+        &amp;quot;CPU&amp;quot;: 1,
+        &amp;quot;MemoryMB&amp;quot;: 2048,
+        &amp;quot;ServiceClass&amp;quot;: &amp;quot;cloud/plan/1&amp;quot;
+      },......
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;あとでちゃんとしたものを作っておこう。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>NDOUtilsのインストール</title>
+      <link>http://kyokoi1979.github.io/2012/01/17/ndoutils%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/</link>
+      <pubDate>Tue, 17 Jan 2012 00:00:00 +0000</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/2012/01/17/ndoutils%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/</guid>
+      <description>
+
+&lt;p&gt;NDOUtilsではNagiosのデータをデータベースに格納して管理することができます。
+&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;p&gt;詳細は公式サイトを参照してください。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://exchange.nagios.org/directory/Addons/Database-Backends/NDOUtils/details&#34;&gt;http://exchange.nagios.org/directory/Addons/Database-Backends/NDOUtils/details&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;下記はサイトからの引用です。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;NDOUtils allows you to export current and historical data from one or more Nagios instances to a MySQL database. Several community addons use this as one of their data sources. NDOUtils consists of a standalone daemon, a Nagios event broker, and several helper utilities.
+&amp;lt;&amp;lt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;コンパイル-インストール&#34;&gt;コンパイル、インストール&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;$ curl http://jaist.dl.sourceforge.net/project/nagios/ndoutils-1.x/ndoutils-1.4b9/ndoutils-1.4b9.tar.gz | tar zxv
+$ cd ndoutils-1.4b9
+$ ./configure
+
+*** Configuration summary for ndoutils 1.4b9 10-27-2009 ***:
+
+ General Options:
+ -------------------------
+ NDO2DB user:    nagios
+ NDO2DB group:   nagios
+
+
+Review the options above for accuracy.  If they look okay,
+type &#39;make&#39; to compile the NDO utilities.
+
+$ make
+$ sudo make install
+
+  Hint: NDOUtils Installation against Nagios v3.x
+  completed.
+
+  If you want to install NDOUtils for Nagios v2.x
+  please type  &#39;make install-2x
+
+
+  Next step should be the database initialization/upgrade
+  cd into the db/ directory and either:
+     ./installdb  (for a new installation) or:
+     ./upgradedb  (for an existing one)
+
+make[1]: ディレクトリ `/usr/local/src/ndoutils-1.4b9/src&#39; から出ます
+
+Main NDOUtils components installed
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;データベース作成&#34;&gt;データベース作成&lt;/h1&gt;
+
+&lt;p&gt;次にNDOUtilsで利用するデータベース、ユーザ、パスワードを設定します。(いずれもndoutilsとしました)
+READMEには下記の記述があるため権限は制限しました。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a username/password that has at least the following privileges for the database:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;    SELECT, INSERT, UPDATE, DELETE
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;lt;&amp;lt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mysql&amp;gt; CREATE DATABASE ndoutils;
+Query OK, 1 row affected (0.00 sec)
+
+mysql&amp;gt; GRANT SELECT,INSERT,UPDATE,DELETE
+    -&amp;gt; ON ndoutils.*
+    -&amp;gt; TO ndoutils@localhost
+    -&amp;gt; IDENTIFIED BY &#39;ndoutils&#39;;
+Query OK, 0 rows affected (0.01 sec)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次にテーブルを作成します。
+failedと出ていますが気にしないでおきます :-)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd db
+$ ./installdb -u root -p &amp;quot;&amp;quot; -h localhost -d ndoutils
+DBD::mysql::db do failed: Table &#39;ndoutils.nagios_dbversion&#39; doesn&#39;t exist at ./installdb line 51.
+** Creating tables for version 1.4b9
+     Using mysql.sql for installation...
+** Updating table nagios_dbversi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;モジュール-コンフィグファイルのコピー&#34;&gt;モジュール、コンフィグファイルのコピー&lt;/h1&gt;
+
+&lt;p&gt;broker moduleのコピー。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo cp src/ndomod-3x.o /usr/local/nagios/bin/ndomod.o
+$ sudo cp config/ndomod.cfg-sample /usr/local/nagios/etc/ndomod.cfg
+$ sudo chown nagios:nagios /usr/local/nagios/etc/ndomod.cfg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;nagiosがbroker moduleを読み込むように設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudi vi /usr/local/nagios/etc/ndomod.cfg
+broker_module=/usr/local/nagios/bin/ndomod.o config_file=/usr/local/nagios/etc/ndomod.cfg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ndo2dbのコピー。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo cp src/ndo2db-3x /usr/local/nagios/bin/ndo2db
+$ sudo cp config/ndo2db.cfg-sample /usr/local/nagios/etc/ndo2db.cfg
+$ sudo chown nagios:nagios /usr/local/nagios/etc/ndo2db.cfg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ndo2dbの設定を先ほど作成したデータベース情報に変更。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo vi /usr/local/nagios/etc/ndo2db.cfg
+db_name=ndoutils
+db_user=ndoutils
+db_pass=ndoutils
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ndo2dbデーモンの起動設定。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo cp daemon-init /etc/init.d/ndoutils
+$ sudo chmod 755 /etc/init.d/ndoutils
+$ sudo chkconfig ndoutils on
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最後にndo2db,nagiosを起動して終わりです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo service ndoutils start
+$ sudo service nagios restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;動作確認&#34;&gt;動作確認&lt;/h1&gt;
+
+&lt;p&gt;正常に動作していればnagiosのログ(/usr/local/nagios/var/nagios.log)に
+こんな感じで表示されているはずです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[1326691682] Nagios 3.3.1 starting... (PID=14465)
+[1326691682] Local time is Mon Jan 16 14:28:02 JST 2012
+[1326691682] LOG VERSION: 2.0
+[1326691682] ndomod: NDOMOD 1.4b9 (10-27-2009) Copyright (c) 2009 Nagios Core Development Team and Community Contributors
+[1326691682] ndomod: Successfully connected to data sink.  0 queued items to flush.
+[1326691682] Event broker module &#39;/usr/local/nagios/bin/ndomod.o&#39; initialized successfully.
+[1326691682] Finished daemonizing... (New PID=14469)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;また、MySQLにもデータが格納されます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mysql&amp;gt; SELECT * FROM ndoutils.nagios_hosts\G
+*************************** 1. row ***************************
+                          host_id: 2
+                      instance_id: 1
+                      config_type: 1
+                   host_object_id: 1
+                            alias: oreore.dtdns.net
+                     display_name: oreore.dtdns.net
+                          address: 127.0.0.1
+          check_command_object_id: 13
+               check_command_args:
+   eventhandler_command_object_id: 0
+        eventhandler_command_args:
+notification_timeperiod_object_id: 43
+       check_timeperiod_object_id: 2
+       failure_prediction_options:
+                   check_interval: 1
+                   retry_interval: 1
+               max_check_attempts: 10
+         first_notification_delay: 0
+            notification_interval: 120
+                   notify_on_down: 1
+            notify_on_unreachable: 1
+               notify_on_recovery: 1
+               notify_on_flapping: 0
+               notify_on_downtime: 0
+                      stalk_on_up: 0
+                    stalk_on_down: 0
+             stalk_on_unreachable: 0
+           flap_detection_enabled: 1
+             flap_detection_on_up: 1
+           flap_detection_on_down: 1
+    flap_detection_on_unreachable: 1
+               low_flap_threshold: 0
+              high_flap_threshold: 0
+         process_performance_data: 1
+         freshness_checks_enabled: 0
+              freshness_threshold: 0
+           passive_checks_enabled: 1
+            event_handler_enabled: 1
+            active_checks_enabled: 1
+        retain_status_information: 1
+     retain_nonstatus_information: 1
+            notifications_enabled: 1
+                 obsess_over_host: 1
+       failure_prediction_enabled: 1
+                            notes:
+                        notes_url:
+                       action_url:
+                       icon_image:
+                   icon_image_alt:
+                       vrml_image:
+                  statusmap_image:
+                   have_2d_coords: 0
+                             x_2d: -1
+                             y_2d: 0
+                   have_3d_coords: 0
+                             x_3d: 0
+                             y_3d: 0
+                             z_3d: 0
+1 row in set (0.00 sec)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>nginx &#43; Nagios のインストール(後編)</title>
+      <link>http://kyokoi1979.github.io/2012/01/13/nginx--nagios-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E5%BE%8C%E7%B7%A8/</link>
+      <pubDate>Fri, 13 Jan 2012 00:00:00 +0000</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/2012/01/13/nginx--nagios-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E5%BE%8C%E7%B7%A8/</guid>
+      <description>
+
+&lt;p&gt;前編に続き、今回はNagiosのWebコンソール表示に必要な設定をしていきます。
+&lt;!-- more --&gt;
+configureスクリプトを実行した時に表示されていたように、/nagiosへのエイリアスを設定します。&lt;/p&gt;
+
+&lt;p&gt;これです。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Web Interface Options:
+ ------------------------
+                 HTML URL:  http://localhost/nagios/
+                  CGI URL:  http://localhost/nagios/cgi-bin/
+ Traceroute (used by WAP):  /bin/traceroute
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;nginxのコンフィグに下記の通り追記します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo vi /etc/nginx/conf.d/default.conf
+
+server {
+....
+....
+....
+  location /nagios {
+    alias /usr/local/nagios/share;
+    index index.php;
+    auth_basic            &amp;quot;Nagios Access&amp;quot;;
+    auth_basic_user_file  /usr/local/nagios/etc/htpasswd.users;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;basic認証設定:2f9e8ea6f33a5739af3c2651d2707a40&#34;&gt;Basic認証設定&lt;/h1&gt;
+
+&lt;p&gt;Basic認証のパスワードファイルを作成します。
+なお、ここで設定したユーザIDについてはWebコンソールでのアクセス制御に用います。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# sudo htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+New password:
+Re-type new password:
+Adding password for user nagiosadmin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ちなみに、ディストリビューションのバージョンによってはデフォルトでCryptを使った暗号化がされるので気をつけてください。
+長いパスワードを設定しても9文字目からは効果がありません。
+※Fedora16ではMD5がデフォルトになっているので問題ありません&lt;/p&gt;
+
+&lt;h1 id=&#34;php関連の設定:2f9e8ea6f33a5739af3c2651d2707a40&#34;&gt;PHP関連の設定&lt;/h1&gt;
+
+&lt;p&gt;nginxはデフォルトのままではPHPを処理してくれないので、php-fpmを使って設定してみます。
+user, groupがapacheになっているのでnginxへと書き換えます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo vi /etc/php-fpm.d/www.conf
+
+user = nginx
+; RPM: Keep a group allowed to write in log dir.
+group = nginx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次にnginxの設定も変更します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo vi /etc/nginx/conf.d/default.conf
+
+  location ~ ^/nagios/(.*\.php)$ {
+    alias /usr/local/nagios/share/$1;
+    include /etc/nginx/fastcgi.conf;
+    fastcgi_pass 127.0.0.1:9000;
+    auth_basic            &amp;quot;Nagios Access&amp;quot;;
+    auth_basic_user_file  /usr/local/nagios/etc/htpasswd.users;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;後はphp-fpmの起動、nginxの再起動を実施します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo systemctl start php-fpm.service
+$ sudo systemctl restart nginx.service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ブラウザでアクセスするとWebコンソールが表示されるようになります。
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/20120113120818.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/p&gt;
+
+&lt;h1 id=&#34;cgi関連の設定:2f9e8ea6f33a5739af3c2651d2707a40&#34;&gt;CGI関連の設定&lt;/h1&gt;
+
+&lt;p&gt;CGIの実行にはspawn-fcgiとfcgiwrapを用います。&lt;/p&gt;
+
+&lt;p&gt;まずはfcgiwrapをインストールします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git clone git://github.com/gnosek/fcgiwrap.git
+$ cd fcgiwrap
+$ autoreconf -i
+$ ./configure &amp;amp;&amp;amp; make &amp;amp;&amp;amp; sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;続いてspawn-fcgiの設定をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo vi /etc/sysconfig/spawn-fcgi
+
+FCGI_SOCKET=/var/run/fcgiwrap.socket
+FCGI_PROGRAM=/usr/local/sbin/fcgiwrap
+FCGI_USER=nginx
+FCGI_GROUP=nginx
+FCGI_EXTRA_OPTIONS=&amp;quot;-M 0700&amp;quot;
+OPTIONS=&amp;quot;-u $FCGI_USER -g $FCGI_GROUP -s $FCGI_SOCKET -S $FCGI_EXTRA_OPTIONS -F 1 -P /var/run/spawn-fcgi.pid -- $FCGI_PROGRAM&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;spawn-fcgiを起動して&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo systemctl start spawn-fcgi.service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;nginxに設定を追加して&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo vi /etc/nginx/conf.d/default.conf
+
+  location ~ ^/nagios/(.*\.cgi)$ {
+    root /usr/local/nagios/sbin/;
+    rewrite ^/nagios/cgi-bin/(.*)\.cgi /$1.cgi break;
+    fastcgi_param AUTH_USER $remote_user;
+    fastcgi_param REMOTE_USER $remote_user;
+    include /etc/nginx/fastcgi.conf;
+    fastcgi_pass  unix:/var/run/fcgiwrap.socket;
+    auth_basic            &amp;quot;Nagios Access&amp;quot;;
+    auth_basic_user_file  /usr/local/nagios/etc/htpasswd.users;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;nginxを再起動して終わり。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo systemctl restart nginx.service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでひと通りの設定が終わりました。&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/20120113124050.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;自動起動設定&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;最後にnginx, php-fpm, spawn-fcgiの自動起動設定をします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo systemctl enable nginx.service php-fpm.service spawn-fcgi.service
+$ sudo chkconfig nagios on
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;nagiosのみchkconfigを用いていますが、他もchkconfigで問題ありません。
+native serviceではないということで結局はchkconfigが実行されます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nginx.service is not a native service, redirecting to /sbin/chkconfig.
+Executing /sbin/chkconfig nginx on
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;これでnginx + Nagios を用いた監視サーバの構築ができました。
+今後は監視で取得したデータのグラフ化やNagios設定のカスタマイズ、監視設定等について書いていこうと思います。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>OpenSSHをMatchディレクティブを使って制御する</title>
+      <link>http://kyokoi1979.github.io/2011/12/29/openssh%E3%82%92match%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E5%88%B6%E5%BE%A1%E3%81%99%E3%82%8B/</link>
+      <pubDate>Thu, 29 Dec 2011 00:00:00 +0000</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/2011/12/29/openssh%E3%82%92match%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E5%88%B6%E5%BE%A1%E3%81%99%E3%82%8B/</guid>
+      <description>
+
+&lt;p&gt;仕事で使う機会があったので書いておく。
+&lt;!-- more --&gt;
+OpenSSH 4.4以降ではMatchディレクティブを使ってユーザ、グループ、ホスト名、IPアドレスに応じて設定を再定義することが可能。&lt;/p&gt;
+
+&lt;p&gt;Matchディレクティブはグローバルの設定よりも優先され、利用できるオプションは下記の通り。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AllowAgentForwarding&lt;/li&gt;
+&lt;li&gt;AllowTcpForwarding&lt;/li&gt;
+&lt;li&gt;AuthorizedKeysFile&lt;/li&gt;
+&lt;li&gt;AuthorizedPrincipalsFile&lt;/li&gt;
+&lt;li&gt;BannerChrootDirectory&lt;/li&gt;
+&lt;li&gt;ForceCommand&lt;/li&gt;
+&lt;li&gt;GatewayPorts&lt;/li&gt;
+&lt;li&gt;GSSAPIAuthentication&lt;/li&gt;
+&lt;li&gt;HostbasedAuthentication&lt;/li&gt;
+&lt;li&gt;HostbasedUsesNameFromPacketOnly&lt;/li&gt;
+&lt;li&gt;KbdInteractiveAuthentication&lt;/li&gt;
+&lt;li&gt;KerberosAuthentication&lt;/li&gt;
+&lt;li&gt;MaxAuthTries&lt;/li&gt;
+&lt;li&gt;MaxSessions&lt;/li&gt;
+&lt;li&gt;PasswordAuthentication&lt;/li&gt;
+&lt;li&gt;PermitEmptyPasswords&lt;/li&gt;
+&lt;li&gt;PermitOpen&lt;/li&gt;
+&lt;li&gt;PermitRootLogin&lt;/li&gt;
+&lt;li&gt;PermitTunnel&lt;/li&gt;
+&lt;li&gt;PubkeyAuthentication&lt;/li&gt;
+&lt;li&gt;RhostsRSAAuthentication&lt;/li&gt;
+&lt;li&gt;RSAAuthentication&lt;/li&gt;
+&lt;li&gt;X11DisplayOffset&lt;/li&gt;
+&lt;li&gt;X11Forwarding&lt;/li&gt;
+&lt;li&gt;X11UseLocalHost&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;設定例:90e54d8b1558c8abf5e2a4ce222adea0&#34;&gt;設定例&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;PasswordAuthentication no
+X11Forwarding no
+Match User hoge
+  PasswordAuthentication yes
+
+Match Address 192.168.1.0/24
+  X11Forwarding yes
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;詳しくはマニュアルで。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&amp;amp;sektion=5&#34;&gt;http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&amp;amp;sektion=5&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>nginx &#43; Nagios のインストール(前編)</title>
+      <link>http://kyokoi1979.github.io/2011/11/25/nginx--nagios-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E5%89%8D%E7%B7%A8/</link>
+      <pubDate>Fri, 25 Nov 2011 00:00:00 +0000</pubDate>
+      <author>unyu1979@gmail.com (kyokoi)</author>
+      <guid>http://kyokoi1979.github.io/2011/11/25/nginx--nagios-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E5%89%8D%E7%B7%A8/</guid>
+      <description>
+
+&lt;p&gt;Fedora16にnginxとNagiosを使った監視サーバを構築してみます。
+&lt;!-- more --&gt;&lt;/p&gt;
+
+&lt;p&gt;nginx固有の部分を覗いて基本的に
+&lt;a href=&#34;http://nagios.sourceforge.net/docs/3_0/quickstart-fedora.html&#34;&gt;公式のマニュアル通り&lt;/a&gt;
+です。&lt;/p&gt;
+
+&lt;h1 id=&#34;パッケージのインストール&#34;&gt;パッケージのインストール&lt;/h1&gt;
+
+&lt;p&gt;まずコンパイル、Web UI表示のために色々いれます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo yum install gcc glibc glibc-common gd gd-devel nginx php  fcgi-devel spawn-fcgi php-fpm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;ユーザ-グループ作成&#34;&gt;ユーザ、グループ作成&lt;/h1&gt;
+
+&lt;p&gt;Nagios用のユーザを作成します。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo useradd -m nagios
+$ sudo passwd nagios
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次にグループを作成し、nagiosユーザとnginxユーザを所属させます。
+これはWebインタフェースからのコマンド実行のため用います。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo useradd -m nagios
+$ sudo groupadd nagios
+$ sudo usermod -a -G nagios nagios
+$ sudo usermod -a -G nagios nginx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;nagiosのコンパイル-インストール&#34;&gt;Nagiosのコンパイル・インストール&lt;/h1&gt;
+
+&lt;p&gt;Nagiosの公式サイトからNagios Coreのソースファイルをダウンロード、展開します。
+sedの箇所を実施しないとmake installの途中でエラーになりますので気をつけてください。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd /tmp
+$ curl http://jaist.dl.sourceforge.net/project/nagios/nagios-3.x/nagios-3.3.1/nagios-3.3.1.tar.gz | tar zxv
+$ cd nagios
+$ ./configure
+$ sed -i &#39;s:for file in includes/rss/\*;:for file in includes/rss/\*.\*;:g&#39; ./html/Makefile
+$ sed -i &#39;s:for file in includes/rss/extlib/\*;:for file in includes/rss/extlib/\*.\*;:g&#39; ./html/Makefile
+$ make all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なお、configureのオプションを指定しない場合こんな感じになります。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; General Options:
+ -------------------------
+        Nagios executable:  nagios
+        Nagios user/group:  nagios,nagios
+       Command user/group:  nagios,nagios
+            Embedded Perl:  no
+             Event Broker:  yes
+        Install ${prefix}:  /usr/local/nagios
+                Lock file:  ${prefix}/var/nagios.lock
+   Check result directory:  ${prefix}/var/spool/checkresults
+           Init directory:  /etc/rc.d/init.d
+  Apache conf.d directory:  /etc/httpd/conf.d
+             Mail program:  /bin/mail
+                  Host OS:  linux-gnu
+
+ Web Interface Options:
+ ------------------------
+                 HTML URL:  http://localhost/nagios/
+                  CGI URL:  http://localhost/nagios/cgi-bin/
+ Traceroute (used by WAP):  /bin/traceroute
+
+
+Review the options above for accuracy.  If they look okay,
+type &#39;make all&#39; to compile the main program and CGIs.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;次にインストールします。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo make install install-init install-commandmode
+$ sudo make install-config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ちなみにApacheの場合はfullinstallとするとApache向けのコンフィグもインストールしてくれます。
+install-configについてはサンプルのコンフィグをインストールしてくれます。&lt;/p&gt;
+
+&lt;p&gt;あとはお好みで自動起動設定でもすればOKです。&lt;/p&gt;
+
+&lt;h1 id=&#34;nagios-pluginsのコンパイル-インストール&#34;&gt;nagios-pluginsのコンパイル・インストール&lt;/h1&gt;
+
+&lt;p&gt;nagios pluginsはNagiosが監視をするためのコマンドたちです。
+先ほどインストールしたコンフィグで監視するためにはnagios pluginsが必要になります。&lt;/p&gt;
+
+&lt;p&gt;現時点での最新版は1.4.15ですが、しばらくリリースされていないのでGit版にします。
+autoconf, automake, gitが必要になるのでインストールしておいてください。&lt;/p&gt;
+
+&lt;p&gt;こちらは特に難しいことはなく、レポジトリをクローンしてconfigureスクリプトを作成、実行、make、make installして完了です。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd /tmp
+$ git clone git://nagiosplug.git.sourceforge.net/gitroot/nagiosplug/nagiosplug
+$ cd nagiosplug
+$ ./tools/setup
+$ ./configure
+$ make &amp;amp;&amp;amp; sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;なお、ライブラリ等の有無によって作成されるプラグインに違いが出てきますので詳しくはドキュメントを確認してください。
+例えばMySQLの接続性を監視したい場合はmysql-develなどが必要になります。&lt;/p&gt;
+
+&lt;h1 id=&#34;nagiosを起動する&#34;&gt;Nagiosを起動する&lt;/h1&gt;
+
+&lt;p&gt;とりあえず監視するのに必要なものはインストールされたので、Nagiosを起動してみます。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo service nagios start
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ただし、これだけでは何も見えません。
+Webサーバの設定については次回書こうと思います。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    nginx &#43; Nagios のインストール(後編) | しゃちくWeb
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kyokoi1979.github.io/2012/01/13/nginx--nagios-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E5%BE%8C%E7%B7%A8/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://kyokoi1979.github.ioindex.xml" rel="alternate" type="application/rss+xml" title="しゃちくWeb" />
+  <link href="http://kyokoi1979.github.ioindex.xml" rel="feed" type="application/rss+xml" title="しゃちくWeb" />
+
+  
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "2b9fffc6-b3fe-4988-a0ef-4f9dcce98eaa", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://kyokoi1979.github.io">しゃちくWeb</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="kyokoi1979" target="_blank">Twitter</a></li>
+          <li><a href="qiantaih" target="_blank">Facebook</a></li>
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>nginx &#43; Nagios のインストール(後編)</h1>
+      <div class="meta">
+        Jan 13, 2012 &nbsp;
+        
+          #<a href="/tags/nginx">nginx</a>&nbsp;
+        
+          #<a href="/tags/nagios">Nagios</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<p>前編に続き、今回はNagiosのWebコンソール表示に必要な設定をしていきます。
+<!-- more -->
+configureスクリプトを実行した時に表示されていたように、/nagiosへのエイリアスを設定します。</p>
+
+<p>これです。</p>
+
+<pre><code> Web Interface Options:
+ ------------------------
+                 HTML URL:  http://localhost/nagios/
+                  CGI URL:  http://localhost/nagios/cgi-bin/
+ Traceroute (used by WAP):  /bin/traceroute
+</code></pre>
+
+<p>nginxのコンフィグに下記の通り追記します。</p>
+
+<pre><code>$ sudo vi /etc/nginx/conf.d/default.conf
+
+server {
+....
+....
+....
+  location /nagios {
+    alias /usr/local/nagios/share;
+    index index.php;
+    auth_basic            &quot;Nagios Access&quot;;
+    auth_basic_user_file  /usr/local/nagios/etc/htpasswd.users;
+  }
+}
+</code></pre>
+
+<h1 id="basic認証設定:2f9e8ea6f33a5739af3c2651d2707a40">Basic認証設定</h1>
+
+<p>Basic認証のパスワードファイルを作成します。
+なお、ここで設定したユーザIDについてはWebコンソールでのアクセス制御に用います。</p>
+
+<pre><code># sudo htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+New password:
+Re-type new password:
+Adding password for user nagiosadmin
+</code></pre>
+
+<p>ちなみに、ディストリビューションのバージョンによってはデフォルトでCryptを使った暗号化がされるので気をつけてください。
+長いパスワードを設定しても9文字目からは効果がありません。
+※Fedora16ではMD5がデフォルトになっているので問題ありません</p>
+
+<h1 id="php関連の設定:2f9e8ea6f33a5739af3c2651d2707a40">PHP関連の設定</h1>
+
+<p>nginxはデフォルトのままではPHPを処理してくれないので、php-fpmを使って設定してみます。
+user, groupがapacheになっているのでnginxへと書き換えます。</p>
+
+<pre><code>$ sudo vi /etc/php-fpm.d/www.conf
+
+user = nginx
+; RPM: Keep a group allowed to write in log dir.
+group = nginx
+</code></pre>
+
+<p>次にnginxの設定も変更します。</p>
+
+<pre><code>$ sudo vi /etc/nginx/conf.d/default.conf
+
+  location ~ ^/nagios/(.*\.php)$ {
+    alias /usr/local/nagios/share/$1;
+    include /etc/nginx/fastcgi.conf;
+    fastcgi_pass 127.0.0.1:9000;
+    auth_basic            &quot;Nagios Access&quot;;
+    auth_basic_user_file  /usr/local/nagios/etc/htpasswd.users;
+  }
+</code></pre>
+
+<p>後はphp-fpmの起動、nginxの再起動を実施します。</p>
+
+<pre><code>$ sudo systemctl start php-fpm.service
+$ sudo systemctl restart nginx.service
+</code></pre>
+
+<p>ブラウザでアクセスするとWebコンソールが表示されるようになります。
+
+<figure >
+    
+        <img src="/images/20120113120818.jpg" />
+    
+    
+</figure>
+</p>
+
+<h1 id="cgi関連の設定:2f9e8ea6f33a5739af3c2651d2707a40">CGI関連の設定</h1>
+
+<p>CGIの実行にはspawn-fcgiとfcgiwrapを用います。</p>
+
+<p>まずはfcgiwrapをインストールします。</p>
+
+<pre><code>$ git clone git://github.com/gnosek/fcgiwrap.git
+$ cd fcgiwrap
+$ autoreconf -i
+$ ./configure &amp;&amp; make &amp;&amp; sudo make install
+</code></pre>
+
+<p>続いてspawn-fcgiの設定をします。</p>
+
+<pre><code>$ sudo vi /etc/sysconfig/spawn-fcgi
+
+FCGI_SOCKET=/var/run/fcgiwrap.socket
+FCGI_PROGRAM=/usr/local/sbin/fcgiwrap
+FCGI_USER=nginx
+FCGI_GROUP=nginx
+FCGI_EXTRA_OPTIONS=&quot;-M 0700&quot;
+OPTIONS=&quot;-u $FCGI_USER -g $FCGI_GROUP -s $FCGI_SOCKET -S $FCGI_EXTRA_OPTIONS -F 1 -P /var/run/spawn-fcgi.pid -- $FCGI_PROGRAM&quot;
+</code></pre>
+
+<p>spawn-fcgiを起動して</p>
+
+<pre><code>$ sudo systemctl start spawn-fcgi.service
+</code></pre>
+
+<p>nginxに設定を追加して</p>
+
+<pre><code>$ sudo vi /etc/nginx/conf.d/default.conf
+
+  location ~ ^/nagios/(.*\.cgi)$ {
+    root /usr/local/nagios/sbin/;
+    rewrite ^/nagios/cgi-bin/(.*)\.cgi /$1.cgi break;
+    fastcgi_param AUTH_USER $remote_user;
+    fastcgi_param REMOTE_USER $remote_user;
+    include /etc/nginx/fastcgi.conf;
+    fastcgi_pass  unix:/var/run/fcgiwrap.socket;
+    auth_basic            &quot;Nagios Access&quot;;
+    auth_basic_user_file  /usr/local/nagios/etc/htpasswd.users;
+  }
+</code></pre>
+
+<p>nginxを再起動して終わり。</p>
+
+<pre><code>$ sudo systemctl restart nginx.service
+</code></pre>
+
+<p>これでひと通りの設定が終わりました。</p>
+
+
+<figure >
+    
+        <img src="/images/20120113124050.jpg" />
+    
+    
+</figure>
+
+
+<ul>
+<li>自動起動設定</li>
+</ul>
+
+<p>最後にnginx, php-fpm, spawn-fcgiの自動起動設定をします。</p>
+
+<pre><code>$ sudo systemctl enable nginx.service php-fpm.service spawn-fcgi.service
+$ sudo chkconfig nagios on
+</code></pre>
+
+<p>nagiosのみchkconfigを用いていますが、他もchkconfigで問題ありません。
+native serviceではないということで結局はchkconfigが実行されます。</p>
+
+<pre><code>nginx.service is not a native service, redirecting to /sbin/chkconfig.
+Executing /sbin/chkconfig nginx on
+</code></pre>
+
+<p>これでnginx + Nagios を用いた監視サーバの構築ができました。
+今後は監視で取得したデータのグラフ化やNagios設定のカスタマイズ、監視設定等について書いていこうと思います。</p>
+
+      
+      
+      <div id="share-this" class="col span_10">
+        <span class='st_twitter_large' displayText='Tweet'></span>
+        <span class='st_facebook_large' displayText='Facebook'></span>
+        <span class='st_googleplus_large' displayText='Google +'></span>
+        <span class='st_pocket_large' displayText='Pocket'></span>
+        <span class='st_sharethis_large' displayText='ShareThis'></span>
+        <span class='st_email_large' displayText='Email'></span>  
+      </div>
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'unyu1979';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="http://kyokoi1979.github.io/2011/12/29/openssh%E3%82%92match%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E5%88%B6%E5%BE%A1%E3%81%99%E3%82%8B/" rel="prev">OpenSSHをMatchディレクティブを使って制御する</a></span>
+    
+    
+      <span class="next"><a href="http://kyokoi1979.github.io/2012/01/17/ndoutils%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" rel="next">NDOUtilsのインストール</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

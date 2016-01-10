@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    OpenSSHをMatchディレクティブを使って制御する | しゃちくWeb
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kyokoi1979.github.io/2011/12/29/openssh%E3%82%92match%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%86%E3%82%A3%E3%83%96%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E5%88%B6%E5%BE%A1%E3%81%99%E3%82%8B/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://kyokoi1979.github.ioindex.xml" rel="alternate" type="application/rss+xml" title="しゃちくWeb" />
+  <link href="http://kyokoi1979.github.ioindex.xml" rel="feed" type="application/rss+xml" title="しゃちくWeb" />
+
+  
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "2b9fffc6-b3fe-4988-a0ef-4f9dcce98eaa", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://kyokoi1979.github.io">しゃちくWeb</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="kyokoi1979" target="_blank">Twitter</a></li>
+          <li><a href="qiantaih" target="_blank">Facebook</a></li>
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>OpenSSHをMatchディレクティブを使って制御する</h1>
+      <div class="meta">
+        Dec 29, 2011 &nbsp;
+        
+          #<a href="/tags/openssh">OpenSSH</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<p>仕事で使う機会があったので書いておく。
+<!-- more -->
+OpenSSH 4.4以降ではMatchディレクティブを使ってユーザ、グループ、ホスト名、IPアドレスに応じて設定を再定義することが可能。</p>
+
+<p>Matchディレクティブはグローバルの設定よりも優先され、利用できるオプションは下記の通り。</p>
+
+<ul>
+<li>AllowAgentForwarding</li>
+<li>AllowTcpForwarding</li>
+<li>AuthorizedKeysFile</li>
+<li>AuthorizedPrincipalsFile</li>
+<li>BannerChrootDirectory</li>
+<li>ForceCommand</li>
+<li>GatewayPorts</li>
+<li>GSSAPIAuthentication</li>
+<li>HostbasedAuthentication</li>
+<li>HostbasedUsesNameFromPacketOnly</li>
+<li>KbdInteractiveAuthentication</li>
+<li>KerberosAuthentication</li>
+<li>MaxAuthTries</li>
+<li>MaxSessions</li>
+<li>PasswordAuthentication</li>
+<li>PermitEmptyPasswords</li>
+<li>PermitOpen</li>
+<li>PermitRootLogin</li>
+<li>PermitTunnel</li>
+<li>PubkeyAuthentication</li>
+<li>RhostsRSAAuthentication</li>
+<li>RSAAuthentication</li>
+<li>X11DisplayOffset</li>
+<li>X11Forwarding</li>
+<li>X11UseLocalHost</li>
+</ul>
+
+<h3 id="設定例:90e54d8b1558c8abf5e2a4ce222adea0">設定例</h3>
+
+<pre><code>PasswordAuthentication no
+X11Forwarding no
+Match User hoge
+  PasswordAuthentication yes
+
+Match Address 192.168.1.0/24
+  X11Forwarding yes
+</code></pre>
+
+<p>詳しくはマニュアルで。</p>
+
+<p><a href="http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&amp;sektion=5">http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config&amp;sektion=5</a></p>
+
+      
+      
+      <div id="share-this" class="col span_10">
+        <span class='st_twitter_large' displayText='Tweet'></span>
+        <span class='st_facebook_large' displayText='Facebook'></span>
+        <span class='st_googleplus_large' displayText='Google +'></span>
+        <span class='st_pocket_large' displayText='Pocket'></span>
+        <span class='st_sharethis_large' displayText='ShareThis'></span>
+        <span class='st_email_large' displayText='Email'></span>  
+      </div>
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'unyu1979';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="http://kyokoi1979.github.io/2011/11/25/nginx--nagios-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E5%89%8D%E7%B7%A8/" rel="prev">nginx &#43; Nagios のインストール(前編)</a></span>
+    
+    
+      <span class="next"><a href="http://kyokoi1979.github.io/2012/01/13/nginx--nagios-%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E5%BE%8C%E7%B7%A8/" rel="next">nginx &#43; Nagios のインストール(後編)</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    さくらのクラウドのAPIで遊んでみる | しゃちくWeb
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="http://kyokoi1979.github.io/2012/01/20/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89%E3%81%AEapi%E3%81%A7%E9%81%8A%E3%82%93%E3%81%A7%E3%81%BF%E3%82%8B/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="http://kyokoi1979.github.ioindex.xml" rel="alternate" type="application/rss+xml" title="しゃちくWeb" />
+  <link href="http://kyokoi1979.github.ioindex.xml" rel="feed" type="application/rss+xml" title="しゃちくWeb" />
+
+  
+  <script type="text/javascript">var switchTo5x=true;</script>
+  <script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+  <script type="text/javascript">stLight.options({publisher: "2b9fffc6-b3fe-4988-a0ef-4f9dcce98eaa", doNotHash: true, doNotCopy: true, hashAddressBar: false});</script>
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="http://kyokoi1979.github.io">しゃちくWeb</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="kyokoi1979" target="_blank">Twitter</a></li>
+          <li><a href="qiantaih" target="_blank">Facebook</a></li>
+          
+          
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>さくらのクラウドのAPIで遊んでみる</h1>
+      <div class="meta">
+        Jan 20, 2012 &nbsp;
+        
+          #<a href="/tags/%E3%81%95%E3%81%8F%E3%82%89%E3%81%AE%E3%82%AF%E3%83%A9%E3%82%A6%E3%83%89">さくらのクラウド</a>&nbsp;
+        
+      </div>
+    </div>
+    <article>
+      <p>さくらのクラウドのAPIが公開されているので遊んでみる。</p>
+
+<!-- more -->
+
+<p>サンプルのコードはPerlだけど、勉強のためRubyに。</p>
+
+<p>アクセストークンなどはコントロールパネルの「設定」=&gt;「APIキー管理」で取得したものを使う。</p>
+
+<pre><code>#!/usr/bin/env ruby
+
+require 'net/https'
+require 'uri'
+require 'json'
+
+access_token = &quot;XXXXXXXXXX&quot;
+access_token_secret = &quot;XXXXXXXXXXXXXXXXXXXXX&quot;
+uri = URI.parse(&quot;https://secure.sakura.ad.jp/cloud/api/cloud/0.2/server/&quot;)
+
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+body = http.start { |http|
+  req = Net::HTTP::Get.new(uri.path)
+  req.basic_auth(access_token, access_token_secret)
+  http.request(req).body
+}
+
+puts JSON.pretty_generate(JSON.parse(body))
+
+</code></pre>
+
+<p>実行するとこんなかんじ。</p>
+
+<pre><code>{
+  &quot;From&quot;: 0,
+  &quot;Count&quot;: 2,
+  &quot;Total&quot;: 2,
+  &quot;Servers&quot;: [
+    {
+      &quot;Index&quot;: 0,
+      &quot;ID&quot;: &quot;XXXXXXXX&quot;,
+      &quot;Name&quot;: &quot;Fedora&quot;,
+      &quot;HostName&quot;: &quot;localhost&quot;,
+      &quot;Description&quot;: &quot;Fedora15&quot;,
+      &quot;CreatedAt&quot;: &quot;2011-11-25T10:28:31+09:00&quot;,
+      &quot;Icon&quot;: {
+        &quot;ID&quot;: &quot;XXXXXXXXXXX&quot;,
+        &quot;URL&quot;: &quot;https://secure.sakura.ad.jp/cloud/api/cloud/0.2/icon/112300511983.png&quot;,
+        &quot;Name&quot;: &quot;Fedora&quot;,
+        &quot;Scope&quot;: &quot;shared&quot;
+      },
+      &quot;ServerPlan&quot;: {
+        &quot;ID&quot;: 1,
+        &quot;Name&quot;: &quot;プラン1&quot;,
+        &quot;CPU&quot;: 1,
+        &quot;MemoryMB&quot;: 2048,
+        &quot;ServiceClass&quot;: &quot;cloud/plan/1&quot;
+      },......
+</code></pre>
+
+<p>あとでちゃんとしたものを作っておこう。</p>
+
+      
+      
+      <div id="share-this" class="col span_10">
+        <span class='st_twitter_large' displayText='Tweet'></span>
+        <span class='st_facebook_large' displayText='Facebook'></span>
+        <span class='st_googleplus_large' displayText='Google +'></span>
+        <span class='st_pocket_large' displayText='Pocket'></span>
+        <span class='st_sharethis_large' displayText='ShareThis'></span>
+        <span class='st_email_large' displayText='Email'></span>  
+      </div>
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside> 
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'unyu1979';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+  </main>
+  
+  <nav class="pagination">
+    
+      <span class="previous">&larr; <a href="http://kyokoi1979.github.io/2012/01/17/ndoutils%E3%81%AE%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB/" rel="prev">NDOUtilsのインストール</a></span>
+    
+    
+      <span class="next"><a href="http://kyokoi1979.github.io/2012/01/25/vyattanetscreen%E3%81%A7%E3%81%AE%E6%8B%A0%E7%82%B9%E9%96%93vpn%E8%A8%AD%E5%AE%9A%E5%89%8D%E7%B7%A8/" rel="next">Vyatta,NetScreenでの拠点間VPN設定(前編)</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+
