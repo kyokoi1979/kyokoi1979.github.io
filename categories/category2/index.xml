@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Category2 on しゃちくWeb</title>
+    <link>http://kyokoi1979.github.io/categories/category2/</link>
+    <description>Recent content in Category2 on しゃちくWeb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <managingEditor>unyu1979@gmail.com (kyokoi1979)</managingEditor>
+    <webMaster>unyu1979@gmail.com (kyokoi1979)</webMaster>
+    <copyright>(C) 2016 kyokoi1979</copyright>
+    <lastBuildDate>Mon, 11 Jan 2016 01:00:25 +0900</lastBuildDate>
+    <atom:link href="http://kyokoi1979.github.io/categories/category2/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>2015 01 11 test</title>
+            <link>http://kyokoi1979.github.io/blog/2016/01/11/2015-01-11-test/</link>
+            <pubDate>Mon, 11 Jan 2016 01:00:25 +0900</pubDate>
+            <author>unyu1979@gmail.com (kyokoi1979)</author>
+            <guid>http://kyokoi1979.github.io/blog/2016/01/11/2015-01-11-test/</guid>
+            <description>&lt;p&gt;新しいバージョンが出たのでお試し。&lt;/p&gt;
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/2015-01-24_16.04.45.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://kyokoi1979.github.io/images/2015-01-24_19.54.50.jpg&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;個人的にはメトロアプリが操作しやすくなったのがお気に入り。
+Microsoft MahjongとかMicrosoft Solitaire Collectionを動かしながら作業ができて捗ります。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>

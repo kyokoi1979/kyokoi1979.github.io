@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on しゃちくWeb</title>
+    <link>http://kyokoi1979.github.io/tags/blog/</link>
+    <description>Recent content in Blog on しゃちくWeb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <managingEditor>unyu1979@gmail.com (kyokoi1979)</managingEditor>
+    <webMaster>unyu1979@gmail.com (kyokoi1979)</webMaster>
+    <copyright>(C) 2016 kyokoi1979</copyright>
+    <lastBuildDate>Mon, 11 Jan 2016 01:04:13 +0900</lastBuildDate>
+    <atom:link href="http://kyokoi1979.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>テスト</title>
+            <link>http://kyokoi1979.github.io/blog/2016/01/11/%E3%83%86%E3%82%B9%E3%83%88/</link>
+            <pubDate>Mon, 11 Jan 2016 01:04:13 +0900</pubDate>
+            <author>unyu1979@gmail.com (kyokoi1979)</author>
+            <guid>http://kyokoi1979.github.io/blog/2016/01/11/%E3%83%86%E3%82%B9%E3%83%88/</guid>
+            <description>&lt;p&gt;以前使っていたOctopressからHugoへ変えました。
+基本的にはMarkdownを使うので殆ど変わらず。&lt;/p&gt;
+
+&lt;p&gt;色々とインストールしないで済む分、導入が楽で良さそう。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>
