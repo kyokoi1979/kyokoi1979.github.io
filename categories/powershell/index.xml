@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Powershell on しゃちくWeb</title>
+    <link>http://kyokoi1979.github.io/categories/powershell/</link>
+    <description>Recent content in Powershell on しゃちくWeb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <managingEditor>unyu1979@gmail.com (kyokoi1979)</managingEditor>
+    <webMaster>unyu1979@gmail.com (kyokoi1979)</webMaster>
+    <copyright>(C) 2016 kyokoi1979</copyright>
+    <lastBuildDate>Thu, 11 Feb 2016 18:46:01 +0900</lastBuildDate>
+    <atom:link href="http://kyokoi1979.github.io/categories/powershell/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>PowerShellでPING試験をする</title>
+            <link>http://kyokoi1979.github.io/blog/2016/02/11/powershell%E3%81%A7ping%E8%A9%A6%E9%A8%93%E3%82%92%E3%81%99%E3%82%8B/</link>
+            <pubDate>Thu, 11 Feb 2016 18:46:01 +0900</pubDate>
+            <author>unyu1979@gmail.com (kyokoi1979)</author>
+            <guid>http://kyokoi1979.github.io/blog/2016/02/11/powershell%E3%81%A7ping%E8%A9%A6%E9%A8%93%E3%82%92%E3%81%99%E3%82%8B/</guid>
+            <description>&lt;p&gt;最近ツールを導入できない環境での試験が多いのでメモ書き程度に。&lt;/p&gt;
+
+&lt;p&gt;実行すると、カレントディレクトリの server.list に書かれたホストへPINGを打って、hoge.csvへ記録していきます。&lt;/p&gt;
+
+&lt;script src=&#34;http://gist-it.appspot.com/https://github.com/kyokoi1979/powershell/blob/master/check_ping.ps1&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;http://gist-it.appspot.com/https://github.com/kyokoi1979/powershell/blob/master/server.list&#34;&gt;&lt;/script&gt;
+
+&lt;pre&gt;&lt;code&gt;
+実行結果はこんな感じになります。
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Time                Address       ReplySize ResponseTime ResponseTimeToLive StatusCode&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;2016/02/11 18:51:58 192.168.100.1        32            0                 64          0
+2016/02/11 18:51:58 8.8.8.8              32            6                 51          0
+2016/02/11 18:51:58 192.168.200.2                                                11003&lt;/p&gt;
+
+&lt;p&gt;Time                Address       ReplySize ResponseTime ResponseTimeToLive StatusCode&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;2016/02/11 18:52:01 192.168.100.1        32            0                 64          0
+2016/02/11 18:52:01 8.8.8.8              32            6                 51          0
+2016/02/11 18:52:01 192.168.200.2                                                11003&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+正常に疎通をしない場合はStatusCodeが0以外を返すはずなので、こんな感じで検索できます。
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Import-Csv hoge.csv | Where-Object { $_.StatusCode -ne 0 } | Format-Table -AutoSize&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Time                Address       ReplySize ResponseTime ResponseTimeToLive StatusCode&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;2016/02/11 18:51:46 192.168.200.2                                           11003&lt;br /&gt;
+2016/02/11 18:51:49 192.168.200.2                                           11003&lt;br /&gt;
+2016/02/11 18:51:52 192.168.200.2                                           11003&lt;br /&gt;
+2016/02/11 18:51:55 192.168.200.2                                           11003&lt;br /&gt;
+2016/02/11 18:51:58 192.168.200.2                                           11003&lt;br /&gt;
+2016/02/11 18:52:01 192.168.200.2                                           11003&lt;br /&gt;
+```&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>
