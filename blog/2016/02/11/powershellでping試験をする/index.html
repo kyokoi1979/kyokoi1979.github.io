@@ -79,47 +79,36 @@
 <script src="http://gist-it.appspot.com/https://github.com/kyokoi1979/powershell/blob/master/check_ping.ps1"></script>
 <script src="http://gist-it.appspot.com/https://github.com/kyokoi1979/powershell/blob/master/server.list"></script>
 
-<pre><code>
-実行結果はこんな感じになります。
+<p>実行結果はこんな感じになります。</p>
 
-</code></pre>
-
-<p>Time                Address       ReplySize ResponseTime ResponseTimeToLive StatusCode</p>
-
-<hr />
-
-<p>2016/02/11 18:51:58 192.168.100.1        32            0                 64          0
+<pre><code>Time                Address       ReplySize ResponseTime ResponseTimeToLive StatusCode
+----                -------       --------- ------------ ------------------ ----------
+2016/02/11 18:51:58 192.168.100.1        32            0                 64          0
 2016/02/11 18:51:58 8.8.8.8              32            6                 51          0
-2016/02/11 18:51:58 192.168.200.2                                                11003</p>
+2016/02/11 18:51:58 192.168.200.2                                                11003
 
-<p>Time                Address       ReplySize ResponseTime ResponseTimeToLive StatusCode</p>
 
-<hr />
 
-<p>2016/02/11 18:52:01 192.168.100.1        32            0                 64          0
+Time                Address       ReplySize ResponseTime ResponseTimeToLive StatusCode
+----                -------       --------- ------------ ------------------ ----------
+2016/02/11 18:52:01 192.168.100.1        32            0                 64          0
 2016/02/11 18:52:01 8.8.8.8              32            6                 51          0
-2016/02/11 18:52:01 192.168.200.2                                                11003</p>
-
-<pre><code>
-正常に疎通をしない場合はStatusCodeが0以外を返すはずなので、こんな感じで検索できます。
-
+2016/02/11 18:52:01 192.168.200.2                                                11003
 </code></pre>
 
-<blockquote>
-<p>Import-Csv hoge.csv | Where-Object { $_.StatusCode -ne 0 } | Format-Table -AutoSize</p>
-</blockquote>
+<p>正常に疎通をしない場合はStatusCodeが0以外を返すはずなので、こんな感じで検索できます。</p>
 
-<p>Time                Address       ReplySize ResponseTime ResponseTimeToLive StatusCode</p>
+<pre><code>&gt; Import-Csv hoge.csv | Where-Object { $_.StatusCode -ne 0 } | Format-Table -AutoSize
 
-<hr />
-
-<p>2016/02/11 18:51:46 192.168.200.2                                           11003<br />
-2016/02/11 18:51:49 192.168.200.2                                           11003<br />
-2016/02/11 18:51:52 192.168.200.2                                           11003<br />
-2016/02/11 18:51:55 192.168.200.2                                           11003<br />
-2016/02/11 18:51:58 192.168.200.2                                           11003<br />
-2016/02/11 18:52:01 192.168.200.2                                           11003<br />
-```</p>
+Time                Address       ReplySize ResponseTime ResponseTimeToLive StatusCode
+----                -------       --------- ------------ ------------------ ----------
+2016/02/11 18:51:46 192.168.200.2                                           11003     
+2016/02/11 18:51:49 192.168.200.2                                           11003     
+2016/02/11 18:51:52 192.168.200.2                                           11003     
+2016/02/11 18:51:55 192.168.200.2                                           11003     
+2016/02/11 18:51:58 192.168.200.2                                           11003     
+2016/02/11 18:52:01 192.168.200.2                                           11003     
+</code></pre>
 
 		</div>
 	</div>
