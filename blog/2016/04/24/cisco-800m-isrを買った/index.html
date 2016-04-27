@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Cisco 800M ISRを買った">
+    <meta name="author" content="kyokoi1979">
+
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <title>Cisco 800M ISRを買った &middot; しゃちくWeb</title>
+
+   	
+    
+        <link rel="stylesheet" href="http://kyokoi1979.github.io/css/theme/cerulean.css">
+    
+
+    <link rel="stylesheet" href="http://kyokoi1979.github.io/css/font-awesome.min.css">
+
+   	
+   	<link rel="stylesheet" href="http://kyokoi1979.github.io/css/style.css">
+
+
+    
+    <script src="http://kyokoi1979.github.io/js/jquery.min-2.1.4.js"></script>
+    <script src="http://kyokoi1979.github.io/js/bootstrap.min-3.3.5.js"></script>
+
+    
+    <link href="" rel="alternate" type="application/rss+xml" title="しゃちくWeb" />
+</head>
+<body lang="en">
+    
+    <div class="container">
+    <div class="row">
+        <div class="navbar navbar-default " role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://kyokoi1979.github.io">しゃちくWeb</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://kyokoi1979.github.io">Home</a></li>
+                    <li><a href="http://kyokoi1979.github.io/post/">Blog</a></li>
+                    
+                      <li><a href="/about/"> About </a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<h3>Cisco 800M ISRを買った</h3>
+				<span class="label label-primary">24.04.2016</span> in 
+				 using tags
+				
+					
+					<a href="/tags/cisco">Cisco</a>
+				
+					 , 
+					<a href="/tags/c841m">c841m</a>
+				
+			</small>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-offset-1 col-md-10">
+			<br>
+			
+
+<p><img src="images/20160423154932.jpg" alt="C841M-4X-JSEC/K9" /></p>
+
+<p>C841M-4X-JSEC/K9を買いました。
+アマゾンで２万円くらい、定価でも4万円しないのでとても安いです。</p>
+
+<p>一般的なブロードバンドルータと比較するとさすがに高いですが、Cisco製品が新品でという意味なら安いと思います。</p>
+
+<h2 id="設定について:9e79c92dfa6ee1226e325090ab66721a">設定について</h2>
+
+<p>初期設定では、LAN側のポートにケーブルを挿すだけで、10.10.10.0/24のアドレスが割り振られ、管理画面にアクセスできるようになっています。</p>
+
+<p><img src="images/20160424135614.png" alt="クイックセットアップ・ウィザード" /></p>
+
+<p>最初にアクセスすると、クイックセットアップウィザードが表示され、 ログイン直後にユーザ名、パスワードを変更するようになっています。</p>
+
+<p><img src="images/20160424135929.png" alt="パスワード変更" /></p>
+
+<p>PPPoEやらファイヤウォールの設定はクイックセットアップウィザードで出来るので、あまり凝った設定をしないのであれば、買ってすぐに使えると思われます。</p>
+
+<h2 id="困ったこと:9e79c92dfa6ee1226e325090ab66721a">困ったこと</h2>
+
+<ul>
+<li><p>GUIからtrunkポートの設定ができない
+CLIで変更したらtrunkも候補に出てきますが、最初から選ぶことができません。</p></li>
+
+<li><p>ゾーンを追加しても、選択できない</p></li>
+</ul>
+
+<p>下の画像には表示されていませんが、Vlan200についてはWLANというゾーンに入っています。</p>
+
+<p><img src="images/20160424141006.png" alt="ゾーン設定" /></p>
+
+<p>ファイヤウォールのポリシー設定についても、追加したゾーンは表示されません。</p>
+
+<p>CLIで設定した場合は表示されるし設定も出来ますが、新規追加時は標準のゾーン以外選択できません。</p>
+
+<p>基本的に、用意されたパターン以外の設定についてはCLIを使うしかないようです。</p>
+
+<p>気が向いたら、実際にやってみたことなんかを書いて行こうと思います。</p>
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+		</div>
+	</div>
+</div>
+
+    <div class="container">
+        <div class="row col-md-12">
+            <footer>
+                <div class="pull-left">
+                    <p>
+                        &copy; 2016 ~ kyokoi1979 ~ Powered By <a href="http://hugo.spf13.com">Hugo</a> - version: 0.15 ~ <a href="http://kyokoi1979.github.io/license">License</a>
+                    </p>
+                </div>
+
+                
+                <div class="pull-right">
+                    
+                    
+                        <a href="https://facebook.com/qiantaih/" target="_blank">
+                        <i class="fa fa-facebook-square fa-2x"></i></a>
+                    
+                    
+                        <a href="https://twitter.com/kyokoi1979" target="_blank">
+                        <i class="fa fa-twitter-square fa-2x"></i></a>
+                    
+                    
+                        <a href="https://github.com/kyokoi1979" target="_blank">
+                        <i class="fa fa-github-square fa-2x"></i></a>
+                    
+                    
+                    
+                        <a href="https://www.flickr.com/photos/129422635@N02" target="_blank">
+                        <i class="fa fa-flickr fa-2x"></i></a>
+                    
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    </body>
+</html>
+

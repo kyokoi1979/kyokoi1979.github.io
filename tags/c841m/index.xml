@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C841m on しゃちくWeb</title>
+    <link>http://kyokoi1979.github.io/tags/c841m/</link>
+    <description>Recent content in C841m on しゃちくWeb</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <managingEditor>unyu1979@gmail.com (kyokoi1979)</managingEditor>
+    <webMaster>unyu1979@gmail.com (kyokoi1979)</webMaster>
+    <copyright>(C) 2016 kyokoi1979</copyright>
+    <lastBuildDate>Sun, 24 Apr 2016 14:22:36 +0900</lastBuildDate>
+    <atom:link href="http://kyokoi1979.github.io/tags/c841m/index.xml" rel="self" type="application/rss+xml" />
+    
+      
+        
+          <item>
+            <title>Cisco 800M ISRを買った</title>
+            <link>http://kyokoi1979.github.io/blog/2016/04/24/cisco-800m-isr%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F/</link>
+            <pubDate>Sun, 24 Apr 2016 14:22:36 +0900</pubDate>
+            <author>unyu1979@gmail.com (kyokoi1979)</author>
+            <guid>http://kyokoi1979.github.io/blog/2016/04/24/cisco-800m-isr%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F/</guid>
+            <description>
+
+&lt;p&gt;&lt;img src=&#34;images/20160423154932.jpg&#34; alt=&#34;C841M-4X-JSEC/K9&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;C841M-4X-JSEC/K9を買いました。
+アマゾンで２万円くらい、定価でも4万円しないのでとても安いです。&lt;/p&gt;
+
+&lt;p&gt;一般的なブロードバンドルータと比較するとさすがに高いですが、Cisco製品が新品でという意味なら安いと思います。&lt;/p&gt;
+
+&lt;h2 id=&#34;設定について:9e79c92dfa6ee1226e325090ab66721a&#34;&gt;設定について&lt;/h2&gt;
+
+&lt;p&gt;初期設定では、LAN側のポートにケーブルを挿すだけで、10.10.10.0/24のアドレスが割り振られ、管理画面にアクセスできるようになっています。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;images/20160424135614.png&#34; alt=&#34;クイックセットアップ・ウィザード&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最初にアクセスすると、クイックセットアップウィザードが表示され、 ログイン直後にユーザ名、パスワードを変更するようになっています。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;images/20160424135929.png&#34; alt=&#34;パスワード変更&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;PPPoEやらファイヤウォールの設定はクイックセットアップウィザードで出来るので、あまり凝った設定をしないのであれば、買ってすぐに使えると思われます。&lt;/p&gt;
+
+&lt;h2 id=&#34;困ったこと:9e79c92dfa6ee1226e325090ab66721a&#34;&gt;困ったこと&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;GUIからtrunkポートの設定ができない
+CLIで変更したらtrunkも候補に出てきますが、最初から選ぶことができません。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;ゾーンを追加しても、選択できない&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下の画像には表示されていませんが、Vlan200についてはWLANというゾーンに入っています。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;images/20160424141006.png&#34; alt=&#34;ゾーン設定&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ファイヤウォールのポリシー設定についても、追加したゾーンは表示されません。&lt;/p&gt;
+
+&lt;p&gt;CLIで設定した場合は表示されるし設定も出来ますが、新規追加時は標準のゾーン以外選択できません。&lt;/p&gt;
+
+&lt;p&gt;基本的に、用意されたパターン以外の設定についてはCLIを使うしかないようです。&lt;/p&gt;
+
+&lt;p&gt;気が向いたら、実際にやってみたことなんかを書いて行こうと思います。&lt;/p&gt;
+</description>
+          </item>
+        
+      
+    
+  </channel>
+</rss>
